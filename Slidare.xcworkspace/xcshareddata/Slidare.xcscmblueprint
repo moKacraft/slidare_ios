@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "96ea10b0-dfd9-4e16-87b5-135d59f09d69",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "96ea10b0-dfd9-4e16-87b5-135d59f09d69" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "96ea10b0-dfd9-4e16-87b5-135d59f09d69" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CFE5E0DF-025D-4582-B435-82DC34ECE33A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "96ea10b0-dfd9-4e16-87b5-135d59f09d69" : "slidare\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Slidare",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "slidare-IOS-sources\/Slidare.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/labeip.epitech.eu\/svn\/2018\/slidare",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "96ea10b0-dfd9-4e16-87b5-135d59f09d69"
+    }
+  ]
+}
