@@ -39,7 +39,7 @@ class MainPageViewController: UIViewController {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
 
-        Alamofire.request("http://54.224.110.79:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -59,7 +59,7 @@ class MainPageViewController: UIViewController {
     {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
-        Alamofire.request("http://54.224.110.79:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

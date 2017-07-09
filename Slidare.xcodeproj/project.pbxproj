@@ -46,6 +46,10 @@
 		F4C5EEA21D74885000C8AE0D /* userdefault.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C5EE971D74885000C8AE0D /* userdefault.png */; };
 		F4DF1B221EE805FB0012703B /* ContactGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF1B211EE805FB0012703B /* ContactGroupViewController.swift */; };
 		F4DF1B241EE81DF70012703B /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF1B231EE81DF60012703B /* GroupViewController.swift */; };
+		F4E8450C1F123FA1006DC84F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8450B1F123FA1006DC84F /* ShareViewController.swift */; };
+		F4E8450E1F1243D4006DC84F /* piece-jointe.png in Resources */ = {isa = PBXBuildFile; fileRef = F4E8450D1F1243D4006DC84F /* piece-jointe.png */; };
+		F4E845101F124B23006DC84F /* SendToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8450F1F124B23006DC84F /* SendToGroupViewController.swift */; };
+		F4E845121F124B3B006DC84F /* SendToContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E845111F124B3B006DC84F /* SendToContactViewController.swift */; };
 		F4F85C111EE8603B004711B0 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F85C101EE8603B004711B0 /* AddGroupViewController.swift */; };
 		F4F85C131EE869B1004711B0 /* AddGroupContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F85C121EE869B1004711B0 /* AddGroupContactController.swift */; };
 		F4F85C151EEAAF3A004711B0 /* api.png in Resources */ = {isa = PBXBuildFile; fileRef = F4F85C141EEAAF3A004711B0 /* api.png */; };
@@ -122,6 +126,10 @@
 		F4C5EE971D74885000C8AE0D /* userdefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = userdefault.png; path = img/userdefault.png; sourceTree = "<group>"; };
 		F4DF1B211EE805FB0012703B /* ContactGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactGroupViewController.swift; sourceTree = "<group>"; };
 		F4DF1B231EE81DF60012703B /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		F4E8450B1F123FA1006DC84F /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		F4E8450D1F1243D4006DC84F /* piece-jointe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "piece-jointe.png"; sourceTree = "<group>"; };
+		F4E8450F1F124B23006DC84F /* SendToGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToGroupViewController.swift; sourceTree = "<group>"; };
+		F4E845111F124B3B006DC84F /* SendToContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToContactViewController.swift; sourceTree = "<group>"; };
 		F4F85C101EE8603B004711B0 /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		F4F85C121EE869B1004711B0 /* AddGroupContactController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupContactController.swift; sourceTree = "<group>"; };
 		F4F85C141EEAAF3A004711B0 /* api.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = api.png; sourceTree = "<group>"; };
@@ -217,6 +225,7 @@
 				D256A3CD1D0355A8002D986A /* Slidare-Bridging-Header.h */,
 				D28AEAE01D0DE8CE000F25BA /* Main.storyboard */,
 				F49642631E762EFF00080E8C /* people.png */,
+				F4E8450D1F1243D4006DC84F /* piece-jointe.png */,
 				F49642641E762EFF00080E8C /* home.png */,
 				D256A39F1D030C97002D986A /* AppDelegate.swift */,
 				D256A3A11D030C97002D986A /* LoginViewController.swift */,
@@ -246,6 +255,9 @@
 				F4DF1B231EE81DF60012703B /* GroupViewController.swift */,
 				F4F85C101EE8603B004711B0 /* AddGroupViewController.swift */,
 				F4F85C121EE869B1004711B0 /* AddGroupContactController.swift */,
+				F4E8450B1F123FA1006DC84F /* ShareViewController.swift */,
+				F4E8450F1F124B23006DC84F /* SendToGroupViewController.swift */,
+				F4E845111F124B3B006DC84F /* SendToContactViewController.swift */,
 			);
 			path = Slidare;
 			sourceTree = "<group>";
@@ -402,6 +414,7 @@
 				F4C5EE9A1D74885000C8AE0D /* appicon5.png in Resources */,
 				D24754781D16A628008EE757 /* app_bg.png in Resources */,
 				F4C5EE9C1D74885000C8AE0D /* background.png in Resources */,
+				F4E8450E1F1243D4006DC84F /* piece-jointe.png in Resources */,
 				F49642661E762EFF00080E8C /* home.png in Resources */,
 				D24754761D16A601008EE757 /* sup_icon.png in Resources */,
 				F4C5EE9D1D74885000C8AE0D /* icon2.png in Resources */,
@@ -568,6 +581,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E8450C1F123FA1006DC84F /* ShareViewController.swift in Sources */,
+				F4E845101F124B23006DC84F /* SendToGroupViewController.swift in Sources */,
 				D2E727541D4E804B0026813F /* SignUpViewController.swift in Sources */,
 				F496426A1E7660CC00080E8C /* ContactViewController.swift in Sources */,
 				F4DF1B221EE805FB0012703B /* ContactGroupViewController.swift in Sources */,
@@ -578,6 +593,7 @@
 				F4F85C131EE869B1004711B0 /* AddGroupContactController.swift in Sources */,
 				F44309611D763E5C00DFBDAE /* SettingsViewController.swift in Sources */,
 				D256A3A21D030C97002D986A /* LoginViewController.swift in Sources */,
+				F4E845121F124B3B006DC84F /* SendToContactViewController.swift in Sources */,
 				D256A3A01D030C97002D986A /* AppDelegate.swift in Sources */,
 				D24754741D16A52A008EE757 /* SplashScreenViewController.swift in Sources */,
 				D256A3CF1D0355A8002D986A /* FacebookSdkObjectifC.m in Sources */,

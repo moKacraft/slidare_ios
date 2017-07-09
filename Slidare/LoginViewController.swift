@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 "email": email as AnyObject,
                 "password": password as AnyObject]
         }
-        Alamofire.request("http://54.224.110.79:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("http://34.227.142.101:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

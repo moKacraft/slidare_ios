@@ -1,30 +1,24 @@
 //
-//  AddGroupContactController.swift
+//  SendToGroupViewController.swift
 //  Slidare
 //
-//  Created by Sophie DUMONT on 07/06/2017.
+//  Created by Sophie DUMONT on 09/07/2017.
 //  Copyright © 2017 Julien. All rights reserved.
 //
 
 import Foundation
-
 import UIKit
 import Alamofire
 
-
-class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class SendToGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     
-    @IBOutlet weak var pickerView: UIPickerView!
     var userToken: String = "";
     var userId: String = "";
-   // let groupList = ["Family","Friends","Party"]
     var listGroup: [String] = []
     var valueSelected = "";
-    @IBOutlet weak var email: UITextField!
+
+    @IBOutlet weak var pickerView: UIPickerView!
     
-    @IBOutlet weak var successMessage: UILabel!
-  //  @IBOutlet weak var successMessage: UILabel!
-   // @IBOutlet weak var email: UITextField!
     override func viewDidLoad() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
@@ -37,7 +31,6 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         fetchGroup()
         pickerView.delegate = self
         pickerView.dataSource = self
-        
     }
     
     
@@ -46,7 +39,6 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -67,41 +59,6 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         self.valueSelected = self.listGroup[row] as String
     }
     
-    
-    @IBAction func addContact(_ sender: Any) {
-        addContactToGroup(groupChosen: self.valueSelected)
-
-    }
-    
-    
-    func addContactToGroup(groupChosen:String)
-    {
-        let headers = ["Authorization": "Bearer \(userToken)"]
-        
-        let parameters: [String: AnyObject]
-        
-        parameters = [
-            "contact_identifier": self.email.text! as AnyObject]
-        
-        Alamofire.request("http://34.227.142.101:50000/addToGroup/" + groupChosen, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .responseJSON { response in switch response.result {
-            case .success(let JSON):
-                let response = JSON as! NSDictionary
-                print(response)
-                self.successMessage.text = "Contact successfully added"
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-                self.successMessage.text = "Your request failed"
-                if let data = response.data {
-                    let json = String(data: data, encoding: String.Encoding.utf8)
-                    print("Failure Response: \(json)")
-                }
-                }
-        }
-        
-    }
-    
     func fetchGroup()
     {
         
@@ -115,7 +72,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
                 let response = JSON as! NSDictionary
                 print(response)
                 let groupNames = response["groups"] as? [[String : AnyObject]]
-
+                
                 for groupNamess in groupNames! {
                     let name = groupNamess["name"]! as! String
                     self.listGroup.append(name)
@@ -123,7 +80,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
                     print("groupName: \(name)")
                     
                 }
-              for element in self.listGroup {
+                for element in self.listGroup {
                     print(element)
                 }
                 
@@ -137,35 +94,9 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         }
         
     }
+    
+    
+   
 
-    
-    @IBAction func groupDeleted(_ sender: Any) {
-        deleteGroup(groupDeleted: self.valueSelected)
-    }
-    
-    
-    func deleteGroup(groupDeleted:String)
-    {
-        let headers = ["Authorization": "Bearer \(userToken)"]
-        
-        
-        
-        Alamofire.request("http://34.227.142.101:50000/removeGroup/" + groupDeleted, method: .delete, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .responseJSON { response in switch response.result {
-            case .success(let JSON):
-                let response = JSON as! NSDictionary
-                print(response)
-            // self.displayContact()
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-                if let data = response.data {
-                    let json = String(data: data, encoding: String.Encoding.utf8)
-                    print("Failure Response: \(json)")
-                }
-                }
-        }
-        
-    }
     
 }

@@ -264,7 +264,7 @@ class SettingsViewController: UIViewController,
         let storage = FIRStorage.storage()
         
         // Create a storage reference from our storage service
-        let storageRef = storage.reference(forURL: "gs://slidare-b0bbf.appspot.com")
+        let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com")
         storageRef.child("images/" + userToken + ".jpeg")
         
         

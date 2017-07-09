@@ -51,7 +51,7 @@ class AddGroupViewController: UIViewController{
             "name": self.groupName.text! as AnyObject]
         
         
-        Alamofire.request("http://54.224.110.79:50000/createGroup", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/createGroup", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
