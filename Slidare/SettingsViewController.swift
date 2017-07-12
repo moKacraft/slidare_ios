@@ -82,6 +82,7 @@ class SettingsViewController: UIViewController,
         // Do any additional setup after loading the view.
         getUser()
 //        uploadPicture()
+       
     }
 
 
@@ -101,7 +102,7 @@ class SettingsViewController: UIViewController,
         let headers = ["Authorization": "Bearer \(userToken)"]
         
 
-        Alamofire.request("http://54.224.110.79:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -121,7 +122,7 @@ class SettingsViewController: UIViewController,
     {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
-        Alamofire.request("http://54.224.110.79:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -151,7 +152,35 @@ class SettingsViewController: UIViewController,
         parameters = [
             "username": self.username.text! as! AnyObject]
         
-        Alamofire.request("http://54.224.110.79:50000/updateUserName", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate()
+        Alamofire.request("http://34.227.142.101:50000/updateUserName", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate()
+            .responseJSON { response in switch response.result {
+            case .success(let JSON):
+                let response = JSON as! NSDictionary
+                print(response)
+            case .failure(let error):
+                print("Request failed with error: \(error)")
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Failure Response: \(json)")
+                }
+                }
+        }
+
+    }
+    
+    
+    func updateProfilePicture(urlPicture:String)
+    {
+        let headers = ["Authorization": "Bearer \(userToken)"]
+        
+        let parameters: [String: AnyObject]
+        
+        parameters = [
+            "profile_picture_url": urlPicture as AnyObject]
+        
+        
+        Alamofire.request("http://34.227.142.101:50000/updateUserPicture", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
@@ -177,7 +206,7 @@ class SettingsViewController: UIViewController,
             "email": self.email.text! as! AnyObject]
 
         
-        Alamofire.request("http://54.224.110.79:50000/updateUserEmail", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/updateUserEmail", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -203,7 +232,7 @@ class SettingsViewController: UIViewController,
         parameters = [
         "old_password": self.currentPassword.text! as AnyObject, "new_password": self.newPassword.text! as AnyObject]
         
-        Alamofire.request("http://54.224.110.79:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -241,42 +270,77 @@ class SettingsViewController: UIViewController,
         dismiss(animated: true, completion: nil)
     }*/
     
+    
+    
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        var  chosenImage = UIImage()
-        chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        pictureProfile.contentMode = .scaleAspectFit //3
-        pictureProfile.image = chosenImage //4
-        dismiss(animated:true, completion: nil) //5
-        let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
-        print("searchthis\(globalURL)")
-        uploadToFireBase(localFile: globalURL)
-
+        //        var  chosenImage = UIImage()
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+           // pictureProfile.contentMode = .scaleAspectFit //3
+            //pictureProfile.image = chosenImage //4
+            dismiss(animated:true, completion: nil) //5
+            let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
+            var data = NSData()
+            data = UIImageJPEGRepresentation(chosenImage, 0.8)! as NSData
+            uploadToFireBase(localFile: data)
+        } else{
+            print("Something went wrong")
+        }
+        
+        
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-
     
-    func uploadToFireBase(localFile: URL) {
+    
+    func uploadToFireBase(localFile: NSData) {
         
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a storage reference from our storage service
-        let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com")
-        storageRef.child("images/" + userToken + ".jpeg")
+        let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/images/" + userToken + ".jpeg")
         
         
-        let uploadTask = storageRef.putFile(localFile, metadata: nil) { metadata, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
+        
+        _ = storageRef.putData(localFile as Data, metadata: nil) { metadata, error in
+            if error != nil {
+                print(error)
             } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                let downloadURL = metadata!.downloadURL()
+                let url = metadata!.downloadURL()
+                let strings = "\(url)"
+                print ("test : ")
+    
+              //  self.updateProfilePicture(urlPicture:strring)
+                let data = try? Data(contentsOf: url!)
+                
+                if let imageData = data {
+                    let image = UIImage(data: data!)
+                    self.pictureProfile.image = image
+                }
+                print (url)
+                print("coucou")
+                
             }
         }
+  
+        
+       /* storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+                print("ca marche pas")
+            } else {
+                // Data for "images/island.jpg" is returned
+                let image = UIImage(data: data!)
+                self.pictureProfile.contentMode = .scaleAspectFit
+                self.pictureProfile.image = image
+                print("ca marche")
+            }
+        }*/
+        
     }
+
     
     
     @IBAction func saveButton(_ sender: AnyObject) {
@@ -287,26 +351,7 @@ class SettingsViewController: UIViewController,
         self.emailAddress.text = self.email.text
         updatePassword()
     }
-    
-    func uploadPicture() {
-        let storage = FIRStorage.storage()
-        
-        // Create a storage reference from our storage service
-        let storageRef = storage.reference(forURL: "gs://slidare-b0bbf.appspot.com")
-        storageRef.child("images/" + userToken)
-        
-        
-       // let uploadTask = storageRef.put(data.base64EncodedData(options: NSData.Base64EncodingOptions.lineLength64Characters) as Data, metadata: metadata) { metadata, error in
-      //      if (error != nil) {
-        //        print(error)
-                // Uh-oh, an error occurred!
-        //    } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-         //       let downloadURL = metadata!.downloadURL
-         //       print(downloadURL)
-           // }
-        //}
-    }
+
     
     
     @IBAction func logoutbutton(_ sender: Any) {

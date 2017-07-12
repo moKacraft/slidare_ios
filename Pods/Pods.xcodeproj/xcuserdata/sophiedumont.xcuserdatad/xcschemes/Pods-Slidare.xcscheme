@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B83B7B7B338E83CC0FF12260AF1372F"
+               BlueprintIdentifier = "A4CC520901DBCC3D422B63CC542DE3B2"
                BuildableName = "Pods_Slidare.framework"
                BlueprintName = "Pods-Slidare"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B83B7B7B338E83CC0FF12260AF1372F"
+            BlueprintIdentifier = "A4CC520901DBCC3D422B63CC542DE3B2"
             BuildableName = "Pods_Slidare.framework"
             BlueprintName = "Pods-Slidare"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -10,14 +10,31 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SendToGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class SendToGroupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate{
     
     var userToken: String = "";
     var userId: String = "";
     var listGroup: [String] = []
     var valueSelected = "";
+    let picker = UIImagePickerController()
+    
+
 
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    
+    @IBOutlet weak var imagePicked: UIImageView!
+    
+ 
+    @IBAction func openLibrary(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            var imagePicker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            picker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }    }
     
     override func viewDidLoad() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -31,11 +48,25 @@ class SendToGroupViewController: UIViewController, UIPickerViewDelegate, UIPicke
         fetchGroup()
         pickerView.delegate = self
         pickerView.dataSource = self
+        picker.delegate = self
+     
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePicked.image = image
+        } else{
+            print("Something went wrong")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    
-    func dismissKeyboard() {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+       func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
@@ -51,15 +82,16 @@ class SendToGroupViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return listGroup[row]
     }
-    
-    
+
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let row = pickerView.selectedRow(inComponent: 0)
         self.valueSelected = self.listGroup[row] as String
     }
     
-    func fetchGroup()
+
+    
+        func fetchGroup()
     {
         
         let headers = ["Authorization": "Bearer \(userToken)"]

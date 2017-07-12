@@ -10,6 +10,9 @@ target 'Slidare' do
   pod 'Firebase/Storage'
 pod 'Firebase/Storage'
 
+pod ‘Socket.IO-Client-Swift’, ‘~> 10.2.0’
+pod ‘SwiftSocket’
+pod ‘CryptoSwift’
 
   target 'SlidareTests' do
     inherit! :search_paths

@@ -10,14 +10,29 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var userToken: String = "";
     var userId: String = "";
         var contactList = [String]()
         var valueSelected = "";
+     let picker = UIImagePickerController()
     
+    
+    @IBOutlet weak var imagePicked: UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    
+    @IBAction func openLibrary(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            var imagePicker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            picker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
     
     override func viewDidLoad() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -33,6 +48,21 @@ class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPic
         displayContact()
 
         
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePicked.image = image
+        } else{
+            print("Something went wrong")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
