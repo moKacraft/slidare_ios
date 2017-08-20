@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var myFirstLabel: UILabel!
     @IBOutlet weak var facebookButton: FBSDKLoginButton!
     
+    @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -108,6 +109,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.errorMessage.text = "Wrong email/password"
                 }
             }
         }

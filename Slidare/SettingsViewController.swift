@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController,
                                 UINavigationControllerDelegate {
     @IBOutlet weak var profilePicture: UIButton!
     @IBOutlet weak var currentPassword: UITextField!
+    @IBOutlet weak var stateMessage: UILabel!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var emailAddress: UILabel!
@@ -238,11 +239,13 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
+               // self.stateMessage.text = "Success"
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                   // self.stateMessage.text = "Fail"
                 }
                 }
         }
