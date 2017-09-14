@@ -1,6 +1,0 @@
-framework module IRCrypto {
-  umbrella header "IRCrypto-umbrella.h"
-
-  export *
-  module * { export * }
-}
