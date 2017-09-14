@@ -357,7 +357,7 @@
 				TargetAttributes = {
 					D256A39B1D030C97002D986A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2LAP3RMZ2H;
+						DevelopmentTeam = 65TCTLNQVW;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -737,7 +737,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2LAP3RMZ2H;
+				DEVELOPMENT_TEAM = 65TCTLNQVW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Slidare/Frameworks",
@@ -745,7 +745,7 @@
 				INFOPLIST_FILE = Slidare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Slidare-Bridging-Header.h";
@@ -762,7 +762,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2LAP3RMZ2H;
+				DEVELOPMENT_TEAM = 65TCTLNQVW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Slidare/Frameworks",
@@ -770,7 +770,7 @@
 				INFOPLIST_FILE = Slidare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Slidare-Bridging-Header.h";
