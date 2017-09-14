@@ -26,12 +26,15 @@ class MainPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(FirebaseApp.app() == nil){
+            FirebaseApp.configure()
+        }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         userId = appDelegate.userId
         getUser()
-        socket = SocketIOClient(socketURL: URL(string: "http://34.227.142.101:8090")!, config: [.log(false)])
+
+      /*  socket = SocketIOClient(socketURL: URL(string: "http://34.227.142.101:8090")!, config: [.log(false)])
         
         socket?.on("connect") {data, ack in
             print("socket connected")
@@ -150,7 +153,7 @@ class MainPageViewController: UIViewController {
         settingsButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         settingsButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: UIControlState.normal)*/
 
-
+*/
         
     //        print(appDelegate.userToken)
 //        print(appDelegate.userId)
