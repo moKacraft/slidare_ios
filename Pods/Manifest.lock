@@ -1,0 +1,61 @@
+PODS:
+  - Alamofire (4.5.0)
+  - CryptoSwift (0.6.9)
+  - Firebase/Core (4.0.3):
+    - FirebaseAnalytics (= 4.0.2)
+    - FirebaseCore (= 4.0.3)
+  - Firebase/Storage (4.0.3):
+    - Firebase/Core
+    - FirebaseStorage (= 2.0.0)
+  - FirebaseAnalytics (4.0.2):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (4.0.3):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (2.0.0):
+    - FirebaseCore (~> 4.0)
+  - FirebaseStorage (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GTMSessionFetcher/Core (1.1.10)
+  - IDZSwiftCommonCrypto (0.9.2)
+  - ImagePicker (2.1.1)
+  - IRCrypto (0.9.7)
+  - Socket.IO-Client-Swift (10.2.0)
+  - SwiftSocket (2.0.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - CryptoSwift
+  - Firebase/Core
+  - Firebase/Storage
+  - IDZSwiftCommonCrypto (~> 0.9.1)
+  - ImagePicker
+  - IRCrypto
+  - Socket.IO-Client-Swift (~> 10.2.0)
+  - SwiftSocket
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
+  Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
+  FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
+  FirebaseCore: c709067051de07bdaffdc4e735cd7299a23c463a
+  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  IDZSwiftCommonCrypto: 671867eabeeee3a2c2395c2152fe3d4349ffc062
+  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
+  IRCrypto: 6dad775543eeb0690078f8ece3b8888f34b19abc
+  Socket.IO-Client-Swift: ecd7fe4d2746a7557e71c2d6e95e23e3be31ddd1
+  SwiftSocket: 2d814afdc97c89217982f86fd036c1874134a63f
+
+PODFILE CHECKSUM: 0a527bd6ae8e8f4ad494b436bb73336837f98048
+
+COCOAPODS: 1.2.1.beta.1

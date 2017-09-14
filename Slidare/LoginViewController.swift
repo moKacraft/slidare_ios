@@ -16,10 +16,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
      @param result The results of the login
      @param error The error (if any) from the login
      */
+    @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var myFirstLabel: UILabel!
     @IBOutlet weak var facebookButton: FBSDKLoginButton!
     
+    @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -40,10 +42,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+     //   scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+            //CGSizeMake(self.view.frame.width, self.view.frame.height+100)
 
         facebookButton.readPermissions = ["public_profile", "email", "user_friends"];
         facebookButton.delegate = self
+        setupViewResizerOnKeyboardShown()
     }
+    
     
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -112,9 +118,49 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.errorMessage.text = "Wrong email/password"
                 }
             }
         }
     }
 }
 
+extension UIViewController {
+    func setupViewResizerOnKeyboardShown() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(UIViewController.keyboardWillShowForResizing),
+                                               name: Notification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(UIViewController.keyboardWillHideForResizing),
+                                               name: Notification.Name.UIKeyboardWillHide,
+                                               object: nil)
+    }
+    
+    func keyboardWillShowForResizing(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let window = self.view.window?.frame {
+            // We're not just minusing the kb height from the view height because
+            // the view could already have been resized for the keyboard before
+            self.view.frame = CGRect(x: self.view.frame.origin.x,
+                                     y: self.view.frame.origin.y,
+                                     width: self.view.frame.width,
+                                     height: window.origin.y + window.height - keyboardSize.height)
+        } else {
+            debugPrint("We're showing the keyboard and either the keyboard size or window is nil: panic widely.")
+        }
+    }
+    
+    func keyboardWillHideForResizing(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let viewHeight = self.view.frame.height
+            self.view.frame = CGRect(x: self.view.frame.origin.x,
+                                     y: self.view.frame.origin.y,
+                                     width: self.view.frame.width,
+                                     height: viewHeight + keyboardSize.height)
+        } else {
+            debugPrint("We're about to hide the keyboard and the keyboard size is nil. Now is the rapture.")
+        }
+    }
+
+}
