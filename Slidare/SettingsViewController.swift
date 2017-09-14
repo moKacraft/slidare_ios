@@ -101,7 +101,7 @@ class SettingsViewController: UIViewController,
         let headers = ["Authorization": "Bearer \(userToken)"]
         
 
-        Alamofire.request("http://54.224.110.79:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -121,7 +121,7 @@ class SettingsViewController: UIViewController,
     {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
-        Alamofire.request("http://54.224.110.79:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -151,7 +151,7 @@ class SettingsViewController: UIViewController,
         parameters = [
             "username": self.username.text! as! AnyObject]
         
-        Alamofire.request("http://54.224.110.79:50000/updateUserName", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate()
+        Alamofire.request("http://34.227.142.101:50000/updateUserName", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
@@ -177,7 +177,7 @@ class SettingsViewController: UIViewController,
             "email": self.email.text! as! AnyObject]
 
         
-        Alamofire.request("http://54.224.110.79:50000/updateUserEmail", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/updateUserEmail", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -203,7 +203,7 @@ class SettingsViewController: UIViewController,
         parameters = [
         "old_password": self.currentPassword.text! as AnyObject, "new_password": self.newPassword.text! as AnyObject]
         
-        Alamofire.request("http://54.224.110.79:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.227.142.101:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -244,14 +244,17 @@ class SettingsViewController: UIViewController,
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        var  chosenImage = UIImage()
-        chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        pictureProfile.contentMode = .scaleAspectFit //3
-        pictureProfile.image = chosenImage //4
-        dismiss(animated:true, completion: nil) //5
-        let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
-        print("searchthis\(globalURL)")
-        uploadToFireBase(localFile: globalURL)
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            pictureProfile.contentMode = .scaleAspectFit //3
+            pictureProfile.image = chosenImage //4
+            dismiss(animated:true, completion: nil) //5
+            let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
+            var data = NSData()
+            data = UIImageJPEGRepresentation(chosenImage, 0.8)! as NSData
+            uploadToFireBase(localFile: data)
+        } else{
+            print("Something went wrong")
+        }
 
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -259,24 +262,34 @@ class SettingsViewController: UIViewController,
     }
 
     
-    func uploadToFireBase(localFile: URL) {
+    func uploadToFireBase(localFile: NSData) {
         
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a storage reference from our storage service
-        let storageRef = storage.reference(forURL: "gs://slidare-b0bbf.appspot.com")
-        storageRef.child("images/" + userToken + ".jpeg")
+        let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/images/" + userToken + ".jpeg")
+
         
         
-        let uploadTask = storageRef.putFile(localFile, metadata: nil) { metadata, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
+        _ = storageRef.putData(localFile as Data, metadata: nil) { metadata, error in
+            if error != nil {
+                print(error)
             } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                let downloadURL = metadata!.downloadURL()
+                let url = metadata!.downloadURL()
+                print(url)
             }
         }
     }
+    
+//        let uploadTask = storageRef.putFile(localFile, metadata: nil) { metadata, error in
+////            if let error = error {
+////                // Uh-oh, an error occurred!
+////            } else {
+////                // Metadata contains file metadata such as size, content-type, and download URL.
+////                let downloadURL = metadata!.downloadURL()
+////            }
+//        }
+//    }
     
     
     @IBAction func saveButton(_ sender: AnyObject) {
@@ -289,7 +302,7 @@ class SettingsViewController: UIViewController,
     }
     
     func uploadPicture() {
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a storage reference from our storage service
         let storageRef = storage.reference(forURL: "gs://slidare-b0bbf.appspot.com")

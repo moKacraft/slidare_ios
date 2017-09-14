@@ -1,48 +1,61 @@
 PODS:
-  - Alamofire (4.2.0)
-  - Firebase/Core (3.11.0):
-    - FirebaseAnalytics (= 3.6.0)
-    - FirebaseCore (= 3.4.6)
-  - Firebase/Storage (3.11.0):
+  - Alamofire (4.5.0)
+  - CryptoSwift (0.6.9)
+  - Firebase/Core (4.0.3):
+    - FirebaseAnalytics (= 4.0.2)
+    - FirebaseCore (= 4.0.3)
+  - Firebase/Storage (4.0.3):
     - Firebase/Core
-    - FirebaseStorage (= 1.0.5)
-  - FirebaseAnalytics (3.6.0):
-    - FirebaseCore (~> 3.4)
-    - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
+    - FirebaseStorage (= 2.0.0)
+  - FirebaseAnalytics (4.0.2):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.4.6):
-    - GoogleInterchangeUtilities (~> 1.2)
+  - FirebaseCore (4.0.3):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.8)
-  - FirebaseStorage (1.0.5):
-    - FirebaseAnalytics (~> 3.5)
+  - FirebaseInstanceID (2.0.0):
+    - FirebaseCore (~> 4.0)
+  - FirebaseStorage (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleSymbolUtilities (1.1.2)
-  - GoogleToolboxForMac/Defines (2.1.0)
-  - GoogleToolboxForMac/NSData+zlib (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GTMSessionFetcher/Core (1.1.7)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GTMSessionFetcher/Core (1.1.10)
+  - IDZSwiftCommonCrypto (0.9.2)
+  - ImagePicker (2.1.1)
+  - IRCrypto (0.9.7)
+  - Socket.IO-Client-Swift (10.2.0)
+  - SwiftSocket (2.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - CryptoSwift
+  - Firebase/Core
   - Firebase/Storage
+  - IDZSwiftCommonCrypto (~> 0.9.1)
+  - ImagePicker
+  - IRCrypto
+  - Socket.IO-Client-Swift (~> 10.2.0)
+  - SwiftSocket
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
-  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
-  FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
-  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
-  GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
+  Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
+  FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
+  FirebaseCore: c709067051de07bdaffdc4e735cd7299a23c463a
+  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  IDZSwiftCommonCrypto: 671867eabeeee3a2c2395c2152fe3d4349ffc062
+  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
+  IRCrypto: 6dad775543eeb0690078f8ece3b8888f34b19abc
+  Socket.IO-Client-Swift: ecd7fe4d2746a7557e71c2d6e95e23e3be31ddd1
+  SwiftSocket: 2d814afdc97c89217982f86fd036c1874134a63f
 
-PODFILE CHECKSUM: 2da0db7d00be526d5338afe7b8eb377888f416bb
+PODFILE CHECKSUM: 0a527bd6ae8e8f4ad494b436bb73336837f98048
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1.beta.1

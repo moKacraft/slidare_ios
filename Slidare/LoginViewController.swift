@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 "email": email as AnyObject,
                 "password": password as AnyObject]
         }
-        Alamofire.request("http://54.224.110.79:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("http://34.227.142.101:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -98,6 +98,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.userId = response.object(forKey: "id") as! String
                 appDelegate.userToken = response.object(forKey: "token") as! String
+                let defaults = UserDefaults.standard
+                defaults.set(appDelegate.userId, forKey: "userId")
+                defaults.set(appDelegate.userToken, forKey: "userToken")
+
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let internVC = storyboard.instantiateViewController(withIdentifier: "MainPageViewController") as! MainPageViewController
