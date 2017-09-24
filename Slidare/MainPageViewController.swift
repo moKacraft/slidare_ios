@@ -13,13 +13,17 @@ import Firebase
 import SwiftSocket
 import CryptoSwift
 
+
+
 class MainPageViewController: UIViewController {
     @IBOutlet weak var facebookLogout: UIButton!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBOutlet weak var settingButton: UIButton!
+   @IBOutlet weak var settingsButton: UIButton!
     var userToken: String = "";
     var userId: String = "";
     var socket: SocketIOClient?
@@ -186,6 +190,30 @@ class MainPageViewController: UIViewController {
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
+                print(response)
+                let url = URL(string: response["profile_picture_url"] as! String )
+                if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
+                    
+                self.settingButton.setImage(image, for: .normal)
+                } else {
+
+                print(url)
+                
+                let data = try? Data(contentsOf: url as! URL)
+                if let imageData = data {
+                    print(imageData)
+                    let image = UIImage(data: data!)
+                     imageCache.setObject(image as AnyObject, forKey: url as AnyObject)
+                    self.settingButton.setImage(image, for: .normal)
+                   // self.pictureProfile.image = image
+                    
+                } else {
+                    print("nop")
+                }
+
+                }
+                
+
 
              /*   if (response["profile_picture_url"] as? String) != nil {
                     self.getProfilePicture(response["profile_picture_url"] as! String)

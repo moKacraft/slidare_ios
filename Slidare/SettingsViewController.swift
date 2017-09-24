@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import Firebase
 
+let imageCache = NSCache<AnyObject, AnyObject>()
+
 class SettingsViewController: UIViewController,
                                 UIImagePickerControllerDelegate,
                                 UINavigationControllerDelegate {
@@ -24,6 +26,8 @@ class SettingsViewController: UIViewController,
     @IBOutlet weak var imagePicked: UIImageView!
   //  var  chosenImage = UIImage()
 
+    @IBOutlet weak var userButton: UIImageView!
+    @IBOutlet weak var sucessPicture: UILabel!
     
     @IBOutlet weak var pictureProfile: UIImageView!
      var userToken: String = "";
@@ -137,17 +141,20 @@ class SettingsViewController: UIViewController,
                 
                 let url = URL(string: response["profile_picture_url"] as! String )
                 
-                print(url)
-
-                DispatchQueue.global().async {
+                if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
+                    
+                    self.pictureProfile.image = image
+                    self.userButton.image = image
+                } else {
+                
                     let data = try? Data(contentsOf: url as! URL)
                     if let imageData = data {
                         print(imageData)
                         let image = UIImage(data: data!)
-                        DispatchQueue.main.async {
-                            self.pictureProfile.image = image
-                        }
                         
+                        imageCache.setObject(image as AnyObject, forKey: url as AnyObject)
+                        self.pictureProfile.image = image
+                        self.userButton.image = image
                     } else {
                         print("nop")
                     }
@@ -209,11 +216,15 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
+                self.sucessPicture.text = "Picture updated"
+
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.sucessPicture.text = "Picture updated"
+
                 }
                 }
         }

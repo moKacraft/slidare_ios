@@ -58,7 +58,7 @@
                                 <rect key="frame" x="116" y="228" width="170" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" background="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="rIf-Zn-CIN">
                                 <rect key="frame" x="112" y="323" width="170" height="30"/>
@@ -255,6 +255,7 @@
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="settingButton" destination="nTm-kY-yVh" id="RSr-pd-6AK"/>
                         <outlet property="settingsButton" destination="nTm-kY-yVh" id="4e3-YS-xxV"/>
                         <outlet property="webView" destination="RIx-rQ-NuV" id="AyJ-fC-5jC"/>
                     </connections>
@@ -331,6 +332,7 @@
                     <connections>
                         <outlet property="contactView" destination="Eht-bM-a22" id="je0-EW-hLa"/>
                         <outlet property="groupView" destination="T0Q-sA-Dh9" id="gP9-SU-b0k"/>
+                        <outlet property="settingButton" destination="6MZ-gG-i30" id="BSM-o3-N8e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LbE-dL-Gjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,10 +482,10 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7c-Uq-gCy">
-                                <rect key="frame" x="103" y="247" width="137" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7c-Uq-gCy">
+                                <rect key="frame" x="89" y="247" width="171" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -563,11 +565,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userdefault.png" translatesAutoresizingMaskIntoConstraints="NO" id="9RK-of-6Yi">
-                                <rect key="frame" x="114" y="86" width="126" height="117"/>
+                                <rect key="frame" x="114" y="68" width="126" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kvf-9Q-rJ6">
-                                <rect key="frame" x="114" y="203" width="126" height="44"/>
+                                <rect key="frame" x="114" y="185" width="126" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Photo" systemItem="camera" id="qom-qw-RQ7">
@@ -595,7 +597,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Zl-yf-gji">
-                                <rect key="frame" x="-8" y="602" width="382" height="72"/>
+                                <rect key="frame" x="-8" y="602" width="383" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L20-j4-eaO">
@@ -614,10 +616,6 @@
                                     <segue destination="UVi-bh-Aib" kind="show" id="BgZ-Qc-MJq"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userdefault.png" translatesAutoresizingMaskIntoConstraints="NO" id="PR6-hz-RO2">
-                                <rect key="frame" x="281" y="611" width="51" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNh-gR-Q7r">
                                 <rect key="frame" x="139" y="561" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -633,6 +631,17 @@
                                 <color key="textColor" red="0.26666666666666666" green="0.71372549019607845" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2C8-MR-05Q" userLabel="successPicture">
+                                <rect key="frame" x="114" y="225" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userdefault.png" translatesAutoresizingMaskIntoConstraints="NO" id="PR6-hz-RO2">
+                                <rect key="frame" x="285" y="613" width="46" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -646,6 +655,8 @@
                         <outlet property="newPassword" destination="aV3-Jq-xGY" id="YLf-IO-hWI"/>
                         <outlet property="pictureProfile" destination="9RK-of-6Yi" id="Txf-XD-vea"/>
                         <outlet property="stateMessage" destination="tNX-Uc-sBL" id="rjk-Oo-GgD"/>
+                        <outlet property="sucessPicture" destination="2C8-MR-05Q" id="ivO-2y-jdH"/>
+                        <outlet property="userButton" destination="PR6-hz-RO2" id="REh-2u-D4R"/>
                         <outlet property="username" destination="Hnz-IY-n3W" id="MHM-Hs-ETX"/>
                     </connections>
                 </viewController>
@@ -1166,8 +1177,8 @@
         <image name="userdefault.png" width="183" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zQj-l3-wyv"/>
+        <segue reference="aYf-ta-Lbr"/>
+        <segue reference="BgZ-Qc-MJq"/>
         <segue reference="yyv-MG-MqE"/>
-        <segue reference="8mN-E4-dpI"/>
     </inferredMetricsTieBreakers>
 </document>
