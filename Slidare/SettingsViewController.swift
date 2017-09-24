@@ -132,7 +132,30 @@ class SettingsViewController: UIViewController,
                 self.name.text = response["username"] as! String
                 self.emailAddress.text = response["email"] as! String
                 self.email.text = response["email"] as! String
+               
                 print(response)
+                
+                let url = URL(string: response["profile_picture_url"] as! String )
+                
+                print(url)
+
+                DispatchQueue.global().async {
+                    let data = try? Data(contentsOf: url as! URL)
+                    if let imageData = data {
+                        print(imageData)
+                        let image = UIImage(data: data!)
+                        DispatchQueue.main.async {
+                            self.pictureProfile.image = image
+                        }
+                        
+                    } else {
+                        print("nop")
+                    }
+                }
+                
+                
+                
+//                print(response)
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
@@ -281,7 +304,7 @@ class SettingsViewController: UIViewController,
         //        var  chosenImage = UIImage()
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
            // pictureProfile.contentMode = .scaleAspectFit //3
-            //pictureProfile.image = chosenImage //4
+            pictureProfile.image = chosenImage //4
             dismiss(animated:true, completion: nil) //5
             let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
             var data = NSData()
@@ -315,7 +338,7 @@ class SettingsViewController: UIViewController,
                 let strings = "\(url)"
                 print ("test : ")
     
-              //  self.updateProfilePicture(urlPicture:strring)
+              self.updateProfilePicture(urlPicture: url!.absoluteString)
                 let data = try? Data(contentsOf: url!)
                 
                 if let imageData = data {
@@ -328,20 +351,6 @@ class SettingsViewController: UIViewController,
             }
         }
   
-        
-       /* storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
-                print("ca marche pas")
-            } else {
-                // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-                self.pictureProfile.contentMode = .scaleAspectFit
-                self.pictureProfile.image = image
-                print("ca marche")
-            }
-        }*/
-        
     }
 
     
