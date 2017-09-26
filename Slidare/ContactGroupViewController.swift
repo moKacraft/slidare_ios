@@ -49,6 +49,8 @@ class ContactGroupViewController: UIViewController{
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
+                if(response["profile_picture_url"] != nil){
+
                 let url = URL(string: response["profile_picture_url"] as! String )
                 
                 print(url)
@@ -70,7 +72,7 @@ class ContactGroupViewController: UIViewController{
                 }
                 
                 }
-                
+                }
                 
                 
                 /*   if (response["profile_picture_url"] as? String) != nil {

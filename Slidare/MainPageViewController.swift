@@ -191,6 +191,7 @@ class MainPageViewController: UIViewController {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
+                if (response["profile_picture_url"] != nil){
                 let url = URL(string: response["profile_picture_url"] as! String )
                 if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
                     
@@ -211,7 +212,7 @@ class MainPageViewController: UIViewController {
                     print("nop")
                 }
 
-                }
+                    }}
                 
 
 

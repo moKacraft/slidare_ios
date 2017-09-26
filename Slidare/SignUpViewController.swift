@@ -14,6 +14,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    
+    @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var confirmEmail: UITextField!
+    @IBOutlet weak var response: UILabel!
+    
+    
     override func viewDidLoad() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
@@ -29,7 +35,20 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func accountCreatePressed(_ sender: AnyObject) {
-        createUser()
+        if self.email.text != self.confirmEmail.text
+        {
+            self.response.text = "Email address does not match"
+        }
+        if self.password.text != self.confirmPassword.text
+        {
+            self.response.text = "Password does not match"
+        }
+        if(self.email.text == self.confirmEmail.text && self.password.text == self.confirmPassword.text)
+        {
+            self.response.text = ""
+            createUser()
+        }
+        
     }
     
     func createUser() {
@@ -55,12 +74,12 @@ class SignUpViewController: UIViewController {
                 let internVC = self.storyboard?.instantiateViewController(withIdentifier: "MainPageViewController") as! MainPageViewController
                 self.present(internVC, animated: true, completion: nil)
                 
-                
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.response.text = json
                 }
             }
         }
