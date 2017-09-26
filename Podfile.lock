@@ -22,14 +22,29 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+<<<<<<< HEAD
   - GTMSessionFetcher/Core (1.1.11)
+=======
+  - GTMSessionFetcher/Core (1.1.10)
+  - IDZSwiftCommonCrypto (0.9.2)
+  - ImagePicker (2.1.1)
+  - IRCrypto (0.9.7)
+>>>>>>> f/julienbranch
   - Socket.IO-Client-Swift (10.2.0)
   - SwiftSocket (2.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - CryptoSwift
+<<<<<<< HEAD
   - Firebase/Storage
+=======
+  - Firebase/Core
+  - Firebase/Storage
+  - IDZSwiftCommonCrypto (~> 0.9.1)
+  - ImagePicker
+  - IRCrypto
+>>>>>>> f/julienbranch
   - Socket.IO-Client-Swift (~> 10.2.0)
   - SwiftSocket
 
@@ -42,10 +57,21 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+<<<<<<< HEAD
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Socket.IO-Client-Swift: ecd7fe4d2746a7557e71c2d6e95e23e3be31ddd1
   SwiftSocket: 2d814afdc97c89217982f86fd036c1874134a63f
 
 PODFILE CHECKSUM: 822fddbceece18fa2cd91a487d19433a2fb57adb
+=======
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  IDZSwiftCommonCrypto: 671867eabeeee3a2c2395c2152fe3d4349ffc062
+  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
+  IRCrypto: 6dad775543eeb0690078f8ece3b8888f34b19abc
+  Socket.IO-Client-Swift: ecd7fe4d2746a7557e71c2d6e95e23e3be31ddd1
+  SwiftSocket: 2d814afdc97c89217982f86fd036c1874134a63f
 
-COCOAPODS: 1.1.1
+PODFILE CHECKSUM: 0a527bd6ae8e8f4ad494b436bb73336837f98048
+>>>>>>> f/julienbranch
+
+COCOAPODS: 1.2.1.beta.1

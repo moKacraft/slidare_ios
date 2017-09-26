@@ -7,13 +7,23 @@ target 'Slidare' do
 
   # Pods for Slidare
   pod 'Alamofire', '~> 4.0'
+  pod 'Firebase/Core'
   pod 'Firebase/Storage'
+<<<<<<< HEAD
 pod 'Firebase/Storage'
 
 pod ‘Socket.IO-Client-Swift’, ‘~> 10.2.0’
 pod ‘SwiftSocket’
 pod ‘CryptoSwift’
 
+=======
+  pod 'Socket.IO-Client-Swift', '~> 10.2.0'
+  pod 'SwiftSocket'
+  pod 'CryptoSwift'
+  pod 'IRCrypto'
+  pod 'IDZSwiftCommonCrypto', '~> 0.9.1'
+  pod 'ImagePicker'
+>>>>>>> f/julienbranch
   target 'SlidareTests' do
     inherit! :search_paths
     # Pods for testing

@@ -104,6 +104,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.userId = response.object(forKey: "id") as! String
                 appDelegate.userToken = response.object(forKey: "token") as! String
+                let defaults = UserDefaults.standard
+                defaults.set(appDelegate.userId, forKey: "userId")
+                defaults.set(appDelegate.userToken, forKey: "userToken")
+
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let internVC = storyboard.instantiateViewController(withIdentifier: "MainPageViewController") as! MainPageViewController

@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>341219354471-gdt5krjsod2nnd8vaibi4efjtrl14j2n.apps.googleusercontent.com</string>
+	<string>341219354471-fkkp9q8hv28l0sk9niprl5e8k49v2172.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.341219354471-gdt5krjsod2nnd8vaibi4efjtrl14j2n</string>
+	<string>com.googleusercontent.apps.341219354471-fkkp9q8hv28l0sk9niprl5e8k49v2172</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAqEWi9tYZW0kiAifkJw80a4fRao58tcGI</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.slidareteam.slidare2</string>
+	<string>com.slidareteam.slidare</string>
 	<key>PROJECT_ID</key>
 	<string>slidare-c93d1</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:341219354471:ios:54ba6fe45a91a6af</string>
+	<string>1:341219354471:ios:cc5ec19c943267f7</string>
 	<key>DATABASE_URL</key>
 	<string>https://slidare-c93d1.firebaseio.com</string>
 </dict>

@@ -35,8 +35,19 @@ class SplashScreenViewController: UIViewController {
 
             
         } else {
-            newViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as!LoginViewController
-            self.present(newViewController, animated: true, completion: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let defaults = UserDefaults.standard
+            let userId = defaults.string(forKey: "userId")
+            let userToken = defaults.string(forKey: "userToken")
+            if ((userId != nil) && (userToken != nil)) {
+                appDelegate.userId = userId!
+                appDelegate.userToken = userToken!
+                newViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainPageViewController") as!MainPageViewController
+                self.present(newViewController, animated: true, completion: nil)
+            } else {
+                newViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as!LoginViewController
+                self.present(newViewController, animated: true, completion: nil)
+            }
         }
     }
     
@@ -49,7 +60,7 @@ class SplashScreenViewController: UIViewController {
             "email": email  as AnyObject,
             "fb_token": FBSDKAccessToken.current().tokenString  as AnyObject,
             "fb_user_id": FBSDKAccessToken.current().userID]  as AnyObject) as! [String : AnyObject]
-        Alamofire.request("http://54.224.110.79:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("http://34.227.142.101:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
