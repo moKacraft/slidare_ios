@@ -17,6 +17,7 @@ class ContactGroupViewController: UIViewController{
     var userToken: String = "";
     var userId: String = "";
     
+    @IBOutlet weak var settingButton: UIButton!
     
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var groupView: UIView!
@@ -32,11 +33,61 @@ class ContactGroupViewController: UIViewController{
         view.addGestureRecognizer(tap)
         self.contactView.alpha = 1
          self.groupView.alpha = 0
+        getUser()
         
 
         
     }
 
+    func getUser()
+    {
+        let headers = ["Authorization": "Bearer \(userToken)"]
+        
+        Alamofire.request("http://34.227.142.101:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .responseJSON { response in switch response.result {
+            case .success(let JSON):
+                let response = JSON as! NSDictionary
+                print(response)
+                if(response["profile_picture_url"] != nil){
+
+                let url = URL(string: response["profile_picture_url"] as! String )
+                
+                print(url)
+                if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
+                    
+                    self.settingButton.setImage(image, for: .normal)
+                } else {
+
+                let data = try? Data(contentsOf: url as! URL)
+                if let imageData = data {
+                    print(imageData)
+                    let image = UIImage(data: data!)
+                     imageCache.setObject(image as AnyObject, forKey: url as AnyObject)
+                    self.settingButton.setImage(image, for: .normal)
+                    // self.pictureProfile.image = image
+                    
+                } else {
+                    print("nop")
+                }
+                
+                }
+                }
+                
+                
+                /*   if (response["profile_picture_url"] as? String) != nil {
+                 self.getProfilePicture(response["profile_picture_url"] as! String)
+                 }*/
+            case .failure(let error):
+                print("Request failed with error: \(error)")
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Failure Response: \(json)")
+                }
+                }
+        }
+        
+    }
     
     @IBAction func showView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {

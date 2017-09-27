@@ -22,6 +22,8 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
     var valueSelected = "";
     @IBOutlet weak var email: UITextField!
     
+    @IBOutlet weak var nameChange: UITextField!
+    @IBOutlet weak var messageSucess: UILabel!
     @IBOutlet weak var successMessage: UILabel!
   //  @IBOutlet weak var successMessage: UILabel!
    // @IBOutlet weak var email: UITextField!
@@ -72,6 +74,42 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         addContactToGroup(groupChosen: self.valueSelected)
 
     }
+    
+    @IBAction func changeName(_ sender: Any) {
+        changeGroupName(name: self.valueSelected, newName: self.nameChange.text!)
+    }
+ 
+    
+    func changeGroupName(name:String, newName:String)
+    {
+        let headers = ["Authorization": "Bearer \(userToken)"]
+        
+         let parameters: [String: AnyObject]
+        
+        parameters = [
+            "name": name as AnyObject, "new_name": newName as AnyObject]
+
+    
+        
+        Alamofire.request("http://34.227.142.101:50000/renameGroup", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .responseJSON { response in switch response.result {
+            case .success(let JSON):
+                let response = JSON as! NSDictionary
+                print(response)
+                self.messageSucess.text = "Contact successfully added"
+            case .failure(let error):
+                print("Request failed with error: \(error)")
+                self.messageSucess.text = "Your request failed"
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print(name)
+                    print("Failure Response: \(json)")
+                }
+                }
+        }
+    }
+    
     
     
     func addContactToGroup(groupChosen:String)

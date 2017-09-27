@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import Firebase
 
+let imageCache = NSCache<AnyObject, AnyObject>()
+
 class SettingsViewController: UIViewController,
                                 UIImagePickerControllerDelegate,
                                 UINavigationControllerDelegate {
@@ -23,12 +25,16 @@ class SettingsViewController: UIViewController,
     @IBOutlet weak var newPassword: UITextField!
     @IBOutlet weak var imagePicked: UIImageView!
   //  var  chosenImage = UIImage()
+    @IBOutlet weak var confirmPwd: UITextField!
 
+    @IBOutlet weak var userButton: UIImageView!
+    @IBOutlet weak var sucessPicture: UILabel!
     
+    @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var pictureProfile: UIImageView!
      var userToken: String = "";
     let picker = UIImagePickerController()
-    
+    var verifEmail: String = "";
     
     @IBAction func library(_ sender: UIBarButtonItem) {
         
@@ -129,10 +135,37 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 self.username.text = response["username"] as! String
+                self.verifEmail = response["email"] as! String
                 self.name.text = response["username"] as! String
                 self.emailAddress.text = response["email"] as! String
                 self.email.text = response["email"] as! String
+               
                 print(response)
+                if(response["profile_picture_url"] != nil){
+                let url = URL(string: response["profile_picture_url"] as! String )
+                
+                if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
+                    
+                    self.pictureProfile.image = image
+                    self.userButton.image = image
+                } else {
+                
+                    let data = try? Data(contentsOf: url as! URL)
+                    if let imageData = data {
+                        print(imageData)
+                        let image = UIImage(data: data!)
+                        
+                        imageCache.setObject(image as AnyObject, forKey: url as AnyObject)
+                        self.pictureProfile.image = image
+                        self.userButton.image = image
+                    } else {
+                        print("nop")
+                    }
+                }
+                
+                }
+                
+//                print(response)
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
@@ -186,11 +219,15 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
+                self.sucessPicture.text = "Picture updated"
+
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.sucessPicture.text = "Picture updated"
+
                 }
                 }
         }
@@ -218,6 +255,7 @@ class SettingsViewController: UIViewController,
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.errorMessage.text = json
                 }
                 }
         }
@@ -226,6 +264,9 @@ class SettingsViewController: UIViewController,
     
     func updatePassword()
     {
+
+        if(self.newPassword.text == self.confirmPwd.text)
+        {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
         let parameters: [String: AnyObject]
@@ -239,17 +280,31 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
-               // self.stateMessage.text = "Success"
+               self.errorMessage.text = "Success"
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
-                   // self.stateMessage.text = "Fail"
+                    if(json == "")
+                    {
+                        self.errorMessage.text = "Success"
+
+                    }
+                    else if (self.currentPassword.text == "" && self.newPassword.text == "" && self.confirmPwd.text == ""){
+                   self.errorMessage.text = ""}
+                    else
+                    {
+                        self.errorMessage.text = "Wrong password provided"
+                    }
                 }
                 }
         }
-        
+        }
+        else
+        {
+            self.errorMessage.text = "New password don't match"
+        }
     }
     
     
@@ -281,7 +336,7 @@ class SettingsViewController: UIViewController,
         //        var  chosenImage = UIImage()
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
            // pictureProfile.contentMode = .scaleAspectFit //3
-            //pictureProfile.image = chosenImage //4
+            pictureProfile.image = chosenImage //4
             dismiss(animated:true, completion: nil) //5
             let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
             var data = NSData()
@@ -315,44 +370,36 @@ class SettingsViewController: UIViewController,
                 let strings = "\(url)"
                 print ("test : ")
     
-              //  self.updateProfilePicture(urlPicture:strring)
+              self.updateProfilePicture(urlPicture: url!.absoluteString)
                 let data = try? Data(contentsOf: url!)
                 
                 if let imageData = data {
                     let image = UIImage(data: data!)
                     self.pictureProfile.image = image
                 }
-                print (url)
-                print("coucou")
                 
             }
         }
   
-        
-       /* storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
-                print("ca marche pas")
-            } else {
-                // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-                self.pictureProfile.contentMode = .scaleAspectFit
-                self.pictureProfile.image = image
-                print("ca marche")
-            }
-        }*/
-        
     }
 
     
     
     @IBAction func saveButton(_ sender: AnyObject) {
+        self.errorMessage.text = ""
+
         updateUserName()
-        updateEmail()
+        if(self.email.text != self.verifEmail){
+            updateEmail()
+
+        }
+        
         self.name.text = self.username.text
         
         self.emailAddress.text = self.email.text
+        
         updatePassword()
+        getUser()
     }
 
     
@@ -366,15 +413,4 @@ class SettingsViewController: UIViewController,
 
 
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
