@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
      @param result The results of the login
      @param error The error (if any) from the login
      */
+   // @IBOutlet weak var theScrollView: UIScrollView!
 
     @IBOutlet weak var myFirstLabel: UILabel!
     @IBOutlet weak var facebookButton: FBSDKLoginButton!
@@ -44,7 +45,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         facebookButton.readPermissions = ["public_profile", "email", "user_friends"];
         facebookButton.delegate = self
+      /*  NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)*/
     }
+    
+/*    func keyboardWillShow(notification:NSNotification){
+        //give room at the bottom of the scroll view, so it doesn't cover up anything the user needs to tap
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.theScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        theScrollView.contentInset = contentInset
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        theScrollView.contentInset = contentInset
+    }*/
     
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
