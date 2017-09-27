@@ -16,6 +16,8 @@ import IRCrypto
 import IDZSwiftCommonCrypto
 import ImagePicker
 
+
+
 class MainPageViewController: UIViewController, ImagePickerDelegate, UITableViewDelegate, UITableViewDataSource  {
     @IBOutlet weak var facebookLogout: UIButton!
     @IBOutlet weak var username: UILabel!
@@ -208,6 +210,16 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(self.pictureUrls[indexPath.row])
         print("You tapped cell number \(indexPath.row).")
+        self.performSegue(withIdentifier: "Segue", sender: self.pictureUrls[indexPath.row])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Segue"
+        {
+            let url = sender as! String
+            let secondViewController = segue.destination as! ConversationViewController
+            secondViewController.imageUrl = url;
+        }
     }
     
     func getUser()
