@@ -250,6 +250,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gib-Np-3ap">
+                                <rect key="frame" x="16" y="95" width="343" height="497"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -257,6 +262,7 @@
                     <connections>
                         <outlet property="settingButton" destination="nTm-kY-yVh" id="RSr-pd-6AK"/>
                         <outlet property="settingsButton" destination="nTm-kY-yVh" id="4e3-YS-xxV"/>
+                        <outlet property="tableView" destination="gib-Np-3ap" id="EcU-90-8hd"/>
                         <outlet property="webView" destination="RIx-rQ-NuV" id="AyJ-fC-5jC"/>
                     </connections>
                 </viewController>

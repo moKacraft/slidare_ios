@@ -1,6 +1,0 @@
-framework module Pods_SlidareUITests {
-  umbrella header "Pods-SlidareUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

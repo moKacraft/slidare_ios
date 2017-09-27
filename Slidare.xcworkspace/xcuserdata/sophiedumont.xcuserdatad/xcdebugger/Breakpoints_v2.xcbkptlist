@@ -24,12 +24,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/MainPageViewController.swift"
-            timestampString = "527984231.515028"
+            timestampString = "528215441.883009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "getUser()"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "fetchContacts(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -168,11 +168,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
+            timestampString = "528212472.143037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "uploadToFireBase(localFile:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slidare/SettingsViewController.swift"
+            timestampString = "528212472.143037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "SettingsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -184,27 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
+            timestampString = "528212472.143037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
-            landmarkName = "SettingsViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "SettingsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -845,12 +845,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
+            timestampString = "528212472.143037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
-            landmarkName = "uploadToFireBase(localFile:)"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -861,43 +861,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
+            timestampString = "528212472.143037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
-            landmarkName = "uploadToFireBase(localFile:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
-            landmarkName = "uploadToFireBase(localFile:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528108938.63548"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "uploadToFireBase(localFile:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1021,12 +989,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/LoginViewController.swift"
-            timestampString = "528111997.215446"
+            timestampString = "528212472.143037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slidare/SettingsViewController.swift"
+            timestampString = "528212472.143037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

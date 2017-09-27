@@ -333,9 +333,10 @@ class SettingsViewController: UIViewController,
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        //        var  chosenImage = UIImage()
+        var  chosenImage = UIImage()
+
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-           // pictureProfile.contentMode = .scaleAspectFit //3
+            pictureProfile.contentMode = .scaleAspectFit //3
             pictureProfile.image = chosenImage //4
             dismiss(animated:true, completion: nil) //5
             let globalURL = (info[UIImagePickerControllerReferenceURL] as! URL)
@@ -345,13 +346,10 @@ class SettingsViewController: UIViewController,
         } else{
             print("Something went wrong")
         }
-        
-        
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     func uploadToFireBase(localFile: NSData) {
         
@@ -359,8 +357,6 @@ class SettingsViewController: UIViewController,
         
         // Create a storage reference from our storage service
         let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/images/" + userToken + ".jpeg")
-        
-        
         
         _ = storageRef.putData(localFile as Data, metadata: nil) { metadata, error in
             if error != nil {
@@ -380,9 +376,18 @@ class SettingsViewController: UIViewController,
                 
             }
         }
-  
     }
 
+    
+//        let uploadTask = storageRef.putFile(localFile, metadata: nil) { metadata, error in
+////            if let error = error {
+////                // Uh-oh, an error occurred!
+////            } else {
+////                // Metadata contains file metadata such as size, content-type, and download URL.
+////                let downloadURL = metadata!.downloadURL()
+////            }
+//        }
+//    }
     
     
     @IBAction func saveButton(_ sender: AnyObject) {
@@ -402,6 +407,26 @@ class SettingsViewController: UIViewController,
         getUser()
     }
 
+    
+//    func uploadPicture() {
+//        let storage = Storage.storage()
+//        
+//        // Create a storage reference from our storage service
+//        let storageRef = storage.reference(forURL: "gs://slidare-b0bbf.appspot.com")
+//        storageRef.child("images/" + userToken)
+//        
+//        
+//       // let uploadTask = storageRef.put(data.base64EncodedData(options: NSData.Base64EncodingOptions.lineLength64Characters) as Data, metadata: metadata) { metadata, error in
+//      //      if (error != nil) {
+//        //        print(error)
+//                // Uh-oh, an error occurred!
+//        //    } else {
+//                // Metadata contains file metadata such as size, content-type, and download URL.
+//         //       let downloadURL = metadata!.downloadURL
+//         //       print(downloadURL)
+//           // }
+//        //}
+//    }
     
     
     @IBAction func logoutbutton(_ sender: Any) {

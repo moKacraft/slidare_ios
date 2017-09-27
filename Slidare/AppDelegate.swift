@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SocketIO
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,17 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userId: String = ""
     var userToken: String = ""
     var userName: String=""
-
-
+    
+    
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
     {
-        FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
         return true;
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
