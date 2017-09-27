@@ -29,6 +29,8 @@
 		F41635761E00D33D00E1C48D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41635751E00D33D00E1C48D /* GoogleService-Info.plist */; };
 		F42F42361EBE980C006F2C7A /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42F42351EBE980C006F2C7A /* AddContactViewController.swift */; };
 		F44309611D763E5C00DFBDAE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44309601D763E5C00DFBDAE /* SettingsViewController.swift */; };
+		F48517371F7C08C700FCDCC5 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48517361F7C08C700FCDCC5 /* ForgetPasswordViewController.swift */; };
+		F48517391F7C417A00FCDCC5 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48517381F7C417A00FCDCC5 /* ConversationViewController.swift */; };
 		F49642651E762EFF00080E8C /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = F49642631E762EFF00080E8C /* people.png */; };
 		F49642661E762EFF00080E8C /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = F49642641E762EFF00080E8C /* home.png */; };
 		F496426A1E7660CC00080E8C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49642691E7660CC00080E8C /* ContactViewController.swift */; };
@@ -109,6 +111,8 @@
 		F41635751E00D33D00E1C48D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F42F42351EBE980C006F2C7A /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		F44309601D763E5C00DFBDAE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F48517361F7C08C700FCDCC5 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		F48517381F7C417A00FCDCC5 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		F49642631E762EFF00080E8C /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		F49642641E762EFF00080E8C /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		F49642691E7660CC00080E8C /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				D256A3CE1D0355A8002D986A /* FacebookSdkObjectifC.m */,
 				D256A3CD1D0355A8002D986A /* Slidare-Bridging-Header.h */,
 				D28AEAE01D0DE8CE000F25BA /* Main.storyboard */,
+				F48517381F7C417A00FCDCC5 /* ConversationViewController.swift */,
+				F48517361F7C08C700FCDCC5 /* ForgetPasswordViewController.swift */,
 				F49642631E762EFF00080E8C /* people.png */,
 				F4E8450D1F1243D4006DC84F /* piece-jointe.png */,
 				F49642641E762EFF00080E8C /* home.png */,
@@ -614,6 +620,7 @@
 			files = (
 				F4E8450C1F123FA1006DC84F /* ShareViewController.swift in Sources */,
 				F4E845101F124B23006DC84F /* SendToGroupViewController.swift in Sources */,
+				F48517391F7C417A00FCDCC5 /* ConversationViewController.swift in Sources */,
 				D2E727541D4E804B0026813F /* SignUpViewController.swift in Sources */,
 				F496426A1E7660CC00080E8C /* ContactViewController.swift in Sources */,
 				F4DF1B221EE805FB0012703B /* ContactGroupViewController.swift in Sources */,
@@ -621,6 +628,7 @@
 				F4F85C111EE8603B004711B0 /* AddGroupViewController.swift in Sources */,
 				D28AEADF1D0D8458000F25BA /* MainPageViewController.swift in Sources */,
 				F42F42361EBE980C006F2C7A /* AddContactViewController.swift in Sources */,
+				F48517371F7C08C700FCDCC5 /* ForgetPasswordViewController.swift in Sources */,
 				F4F85C131EE869B1004711B0 /* AddGroupContactController.swift in Sources */,
 				F44309611D763E5C00DFBDAE /* SettingsViewController.swift in Sources */,
 				D256A3A21D030C97002D986A /* LoginViewController.swift in Sources */,
