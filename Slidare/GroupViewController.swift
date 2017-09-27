@@ -12,10 +12,9 @@ import UIKit
 import Alamofire
 
 class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-        
     @IBOutlet weak var tableView: UITableView!
     var groupNameList: [String] = []
+    var groupOwnerList: [String] = []
     var tmp: [String] = []
     var groupContactList: [[String]] = []
     
@@ -78,6 +77,12 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        print(indexPath.section)
+        return self.groupOwnerList[indexPath.section] == self.userId
+//        return false
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
@@ -130,6 +135,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         self.groupNameList.removeAll()
         self.groupContactList.removeAll()
+        self.groupOwnerList.removeAll()
         
         let headers = ["Authorization": "Bearer \(userToken)"]
         
@@ -144,7 +150,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let groupNames = response["groups"] as? [[String : AnyObject]]
                 
                 let peoplesArray = response["groups"]as? [[String : AnyObject]]
-
+                
                 for peopleArray in peoplesArray! {
                     
                     if (peopleArray["users"] != nil)
@@ -157,6 +163,7 @@ class GroupViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     else{
                         self.tmp.append("")
                     }
+                    self.groupOwnerList.append(peopleArray["owner"] as! String)
                     self.groupContactList.append(self.tmp)
                     self.tmp.removeAll()
                     

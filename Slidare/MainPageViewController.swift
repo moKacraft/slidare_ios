@@ -273,11 +273,12 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
-                let fileUrls = response["file_urls"] as! NSArray
-                for fileUrl in fileUrls {
-                    self.pictureUrls.append(fileUrl as! String)
+                if let fileUrls = response["file_urls"] as? NSArray {
+                    for fileUrl in fileUrls {
+                        self.pictureUrls.append(fileUrl as! String)
+                    }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
