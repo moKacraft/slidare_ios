@@ -36,8 +36,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     override func viewDidLoad() {
-        
-
         super.viewDidLoad()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -86,11 +84,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!){
 
         FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, email"]).start { (connection, result, error) -> Void in
+            print(result)
+            print("result")
             let data:[String:AnyObject] = result as! [String : AnyObject]
             let email: String = data["email"] as! String
             let firstName: String = data["first_name"] as! String
             let lastName: String = data["last_name"] as! String
-
+            print("end")
             self.loginOnApi(email, password: "", firstName: firstName, lastName: lastName)
         }
     }

@@ -13,7 +13,6 @@ import Firebase
 import SwiftSocket
 import CryptoSwift
 import IRCrypto
-import CommonCrypto
 import IDZSwiftCommonCrypto
 import ImagePicker
 
@@ -22,14 +21,10 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var webView: UIWebView!
-
-
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var settingButton: UIButton!
-   @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
 
-   // @IBOutlet weak var tableView: UITableView!
     let cellReuseIdentifier = "cell"
     var userToken: String = "";
     var userId: String = "";
@@ -67,10 +62,10 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         userId = appDelegate.userId
-
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         getUser()
 
-      /*  socket = SocketIOClient(socketURL: URL(string: "http://34.227.142.101:8090")!, config: [.log(false)])
+        socket = SocketIOClient(socketURL: URL(string: "http:34.227.142.101:8090")!, config: [.log(false)])
         
         socket?.on("connect") {data, ack in
             print("socket connected")
@@ -81,7 +76,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
             var client = TCPClient(address: "34.227.142.101", port: data[1] as! Int32)
             client.connect(timeout: 10);
             
-            let file = data[4] as! String //this is the file. we will write to and read from it
+            let file = data[4] as! String // this is the file. we will write to and read from it
             
             if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 
@@ -98,14 +93,15 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                     do {
                         try buf.write(to: path)
                     }
-                    catch {/* error handling here */}
+                    catch { //error handling here
+                    }
                 }
                 print(buffer.count)
                 
                 let storage = Storage.storage()
                 
-                // Create a storage reference from our storage service
-                let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/" + (data[4] as! String))
+//                 Create a storage reference from our storage service
+                let storageRef = storage.reference(forURL: "gs:slidare-c93d1.appspot.com/" + (data[4] as! String))
                 _ = storageRef.putData(buffer, metadata: nil) { metadata, error in
                     if error != nil {
                         print(error)
@@ -119,81 +115,47 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                     }
                 }
                 
-                //                do {
-                ////                    print(data[6] as! String)
-                ////                    print(data[7] as! String)
-                ////
-                ////                    print((data[6] as! String).lengthOfBytes(using: .utf8))
-                ////                    print((data[7] as! String).lengthOfBytes(using: .utf8))
-                ////
-                //                    let dataDec = Data(base64Encoded: data[6] as! String)
-                //                    let dataDec2 = Data(base64Encoded: data[7] as! String)
-                //
-                ////                    let rep = try HMAC(key: Array<UInt8>("PBKDF2WithHmacSHA1".utf8), variant: .sha1).authenticate(buffer.bytes)
-                //
-                //  //                  print(rep);
-                //
-                //                    let rep2 = try PKCS5.PBKDF2(password: Array<UInt8>((data[8] as! String).utf8), salt: (dataDec?.bytes)!, iterations: 65536, variant: .sha256).calculate()
-                //                    print(rep2)
-                //
-                //                    let decrypted = try AES(key: rep2, iv: dataDec2?.bytes, blockMode: .CBC, padding: PKCS7()).decrypt(buffer.bytes)
-                //
-                //                    print(decrypted)
-                //                    let storage = Storage.storage()
-                //
-                //                    // Create a storage reference from our storage service
-                //                    let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/" + (data[4] as! String))
-                //                    _ = storageRef.putData(Data(decrypted), metadata: nil) { metadata, error in
-                //                        if error != nil {
-                //                            print(error)
-                //                        } else {
-                //                            let url = metadata!.downloadURL()
-                //                            print(url?.absoluteString)
-                //                            let url2 = NSURL (string: (url?.absoluteString)!);
-                //                            let requestObj = NSURLRequest(url: url2! as URL);
-                //                            self.webView.scalesPageToFit = true;
-                //                            self.webView.loadRequest(requestObj as URLRequest);
-                //                        }
-                //                    }
-                //
-                //                } catch {
-                //                    print(error)
-                //                }
-                //                do {
-                //                    let decrypted = try AES(key: data[8] as! Array<UInt8>, iv: data[7] as! Array<UInt8>, blockMode: .CBC, padding: PKCS7()).decrypt(fileBuf)
-                //                } catch {
-                //                    print(error)
-                //                }
-                
+                do {
+                    let dataDec = Data(base64Encoded: data[6] as! String)
+                    let dataDec2 = Data(base64Encoded: data[7] as! String)
+                    let rep2 = try PKCS5.PBKDF2(password: Array<UInt8>((data[8] as! String).utf8), salt: (dataDec?.bytes)!, iterations: 65536, variant: .sha256).calculate()
+                    print(rep2)
+
+                    let decrypted = try AES(key: rep2, iv: dataDec2?.bytes, blockMode: .CBC, padding: .pkcs7).decrypt(buffer.bytes)
+
+                    print(decrypted)
+                    let storage = Storage.storage()
+
+                    // Create a storage reference from our storage service
+                    let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/" + (data[4] as! String))
+                    _ = storageRef.putData(Data(decrypted), metadata: nil) { metadata, error in
+                        if error != nil {
+                            print(error)
+                        } else {
+                            let url = metadata!.downloadURL()
+                            print(url?.absoluteString)
+                            let url2 = NSURL (string: (url?.absoluteString)!);
+                            let requestObj = NSURLRequest(url: url2! as URL);
+                            self.webView.scalesPageToFit = true;
+                            self.webView.loadRequest(requestObj as URLRequest);
+                        }
+                    }
+
+                } catch {
+                    print(error)
+                }
+//                do {
+//                    let decrypted = try AES(key: data[8] as! Array<UInt8>, iv: data[7] as! Array<UInt8>, blockMode: .CBC, padding: .pkcs7).decrypt(fileBuf)
+//                } catch {
+//                    print(error)
+//                }
             }
-            
         }
         socket?.on("server ready") {data, ack in
             print(data);
         }
         
         socket?.connect();
-        
-        print("Type \"quit\" to stop")
-        
-        //        socket.connect()
-        /*let image = UIImage(named : "userdefault")
-         settingsButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-         settingsButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: UIControlState.normal)*/
-        
-        
-        
-        //        print(appDelegate.userToken)
-        //        print(appDelegate.userId)
-        /*let image = UIImage(named : "userdefault")
-        settingsButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        settingsButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: UIControlState.normal)*/
-
-*/
-
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-
-        
         tableView.delegate = self
         tableView.dataSource = self
         getUser()
@@ -307,11 +269,12 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
-                let fileUrls = response["file_urls"] as! NSArray
-                for fileUrl in fileUrls {
-                    self.pictureUrls.append(fileUrl as! String)
+                if let fileUrls = response["file_urls"] as? NSArray {
+                    for fileUrl in fileUrls {
+                        self.pictureUrls.append(fileUrl as! String)
+                    }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
@@ -322,7 +285,6 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         }
         
     }
-
     func getProfilePicture(_ url:String)
     {
         let url = URL(string: url)
@@ -356,7 +318,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         let ivString = iv.toBase64()
         let keysString = "12341234123412341234123412341234"
         do {
-            encryptedFile = try AES(key: keys6, iv: iv, blockMode: .CBC, padding: PKCS7()).encrypt(data!.bytes)
+            encryptedFile = try AES(key: keys6, iv: iv, blockMode: .CBC, padding: .pkcs7).encrypt(data!.bytes)
             socket?.emit("request file transfer", "iosFile.jpg",
                              "iosFile.jpg", ["juju@gmail.com"], "encrypted", "iosFile",
                              "nosha1", saltString!,
@@ -411,7 +373,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                 let key: Data = Data(base64Encoded: data[8] as! String)!
                 do {
                     let keys6 = PBKDF.deriveKey(password: key.base64EncodedString(), salt: salt.bytes, prf: .sha1, rounds: 65536, derivedKeyLength: 32)
-                    let decrypted = try AES(key: keys6, iv: iv.bytes, blockMode: .CBC, padding: PKCS7()).decrypt(buffer.bytes)
+                    let decrypted = try AES(key: keys6, iv: iv.bytes, blockMode: .CBC, padding: .pkcs7).decrypt(buffer.bytes)
                     let storage = Storage.storage()
                     
                     // Create a storage reference from our storage service
@@ -424,8 +386,8 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                             print(url?.absoluteString)
                             let url2 = NSURL (string: (url?.absoluteString)!);
                             let requestObj = NSURLRequest(url: url2! as URL);
-                            self.webView.scalesPageToFit = true;
-                            self.webView.loadRequest(requestObj as URLRequest);
+//                            self.webView.scalesPageToFit = true;
+//                            self.webView.loadRequest(requestObj as URLRequest);
                         }
                     }
                     

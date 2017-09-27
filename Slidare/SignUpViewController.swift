@@ -61,7 +61,6 @@ class SignUpViewController: UIViewController {
             "last_name": lastName.text! as! AnyObject,
             "email": email.text! as! AnyObject,
             "password": password.text! as! AnyObject]
-
         Alamofire.request("http://34.227.142.101:50000/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {

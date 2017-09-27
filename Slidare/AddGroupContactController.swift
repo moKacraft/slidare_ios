@@ -161,8 +161,8 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
                     print("groupName: \(name)")
                     
                 }
-              for element in self.listGroup {
-                    print(element)
+                if (self.listGroup.count > 0) {
+                    self.valueSelected = self.listGroup[0];
                 }
                 
             case .failure(let error):

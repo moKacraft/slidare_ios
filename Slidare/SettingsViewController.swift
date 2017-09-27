@@ -350,14 +350,13 @@ class SettingsViewController: UIViewController,
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
+
     func uploadToFireBase(localFile: NSData) {
         
         let storage = Storage.storage()
         
         // Create a storage reference from our storage service
         let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/images/" + userToken + ".jpeg")
-        
         _ = storageRef.putData(localFile as Data, metadata: nil) { metadata, error in
             if error != nil {
                 print(error)
@@ -407,8 +406,8 @@ class SettingsViewController: UIViewController,
         getUser()
     }
 
-    
 //    func uploadPicture() {
+    //    func uploadPicture() {
 //        let storage = Storage.storage()
 //        
 //        // Create a storage reference from our storage service
