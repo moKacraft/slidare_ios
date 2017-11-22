@@ -24,12 +24,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/MainPageViewController.swift"
-            timestampString = "528240188.781033"
+            timestampString = "532465131.387992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "211"
             endingLineNumber = "211"
-            landmarkName = "fetchContacts(_:)"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -72,43 +72,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528050504.275348"
+            timestampString = "532465131.388108"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "getUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slidare/SettingsViewController.swift"
+            timestampString = "532465131.389519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "getUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slidare/SettingsViewController.swift"
+            timestampString = "532465131.390614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
             endingLineNumber = "137"
-            landmarkName = "getUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528050504.275348"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "getUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528047805.792445"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
             landmarkName = "getUser()"
             landmarkType = "7">
             <Locations>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528047805.792445"
+            timestampString = "532465131.39169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "getUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.392756"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "uploadToFireBase(localFile:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.393733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "SettingsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.394584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "SettingsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518862484.791928"
+            timestampString = "532465131.395424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247">
+            startingLineNumber = "242"
+            endingLineNumber = "242">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -230,7 +230,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518862484.791928"
+            timestampString = "532465131.395479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "226"
@@ -246,7 +246,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518862484.791928"
+            timestampString = "532465131.39553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "209"
@@ -262,7 +262,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "513666491.251294"
+            timestampString = "532465131.395586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
@@ -355,7 +355,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.395632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
@@ -371,7 +371,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.395671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -387,7 +387,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.395708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -403,7 +403,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518862484.791928"
+            timestampString = "532465131.395744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "181"
@@ -419,7 +419,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/AddContactViewController.swift"
-            timestampString = "518521793.585956"
+            timestampString = "532465131.395783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -435,7 +435,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518862484.791928"
+            timestampString = "532465131.39582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
@@ -451,7 +451,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.395855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
@@ -467,7 +467,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.395897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -483,7 +483,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518862484.791928"
+            timestampString = "532465131.395933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"
@@ -499,7 +499,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.395971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -515,7 +515,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.396018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
@@ -531,7 +531,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/ContactViewController.swift"
-            timestampString = "518526816.954597"
+            timestampString = "532465131.396055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
@@ -563,13 +563,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/GroupViewController.swift"
-            timestampString = "518541528.483737"
+            timestampString = "532465131.396132"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
             endingLineNumber = "13"
-            landmarkName = "GroupViewController"
-            landmarkType = "3">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -656,13 +656,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/GroupViewController.swift"
-            timestampString = "519144676.773193"
+            timestampString = "532465131.396174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
+            landmarkName = "GroupViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -672,7 +672,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/GroupViewController.swift"
-            timestampString = "518542405.22923"
+            timestampString = "532465131.396212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
@@ -765,7 +765,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/GroupViewController.swift"
-            timestampString = "519144676.773193"
+            timestampString = "532465131.396249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -781,7 +781,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/GroupViewController.swift"
-            timestampString = "519144676.773193"
+            timestampString = "532465131.396304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
@@ -797,13 +797,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/GroupViewController.swift"
-            timestampString = "519144676.773193"
+            timestampString = "532465131.396341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
             endingLineNumber = "79"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
+            landmarkName = "GroupViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -813,11 +813,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528047805.792445"
+            timestampString = "532465131.396382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "library(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -829,7 +829,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SendToGroupViewController.swift"
-            timestampString = "521454305.471731"
+            timestampString = "532465131.397291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -845,11 +845,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.397337"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -861,11 +861,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.398176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "uploadToFireBase(localFile:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -877,11 +877,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528047805.792445"
+            timestampString = "532465131.398996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "getUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -893,11 +893,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528050504.275348"
+            timestampString = "532465131.399824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "getUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -909,11 +909,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528050504.275348"
+            timestampString = "532465131.401038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "getUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -925,11 +925,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528050504.275348"
+            timestampString = "532465131.402331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "getUser()"
             landmarkType = "7">
             <Locations>
@@ -973,11 +973,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528050504.275348"
+            timestampString = "532465131.403632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "getUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -989,11 +989,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/LoginViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.404974"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1005,11 +1005,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/SettingsViewController.swift"
-            timestampString = "528212472.143037"
+            timestampString = "532465131.405066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1021,12 +1021,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slidare/MainPageViewController.swift"
-            timestampString = "528240188.781033"
+            timestampString = "532465131.406295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "269"
             endingLineNumber = "269"
-            landmarkName = "prepare(for:sender:)"
+            landmarkName = "getUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

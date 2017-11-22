@@ -21,6 +21,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var myFirstLabel: UILabel!
     @IBOutlet weak var facebookButton: FBSDKLoginButton!
     
+    @IBOutlet weak var signinButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -40,6 +41,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        signinButton.layer.cornerRadius = 5
+
      //   scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
             //CGSizeMake(self.view.frame.width, self.view.frame.height+100)
 
@@ -123,7 +126,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 "email": email as AnyObject,
                 "password": password as AnyObject]
         }
-        Alamofire.request("http://34.227.142.101:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("http://34.238.153.180:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

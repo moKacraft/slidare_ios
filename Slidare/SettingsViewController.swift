@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController,
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var emailAddress: UILabel!
-    @IBOutlet weak var email: UITextField!
+  //  @IBOutlet weak var email: UITextField!
     @IBOutlet weak var newPassword: UITextField!
     @IBOutlet weak var imagePicked: UIImageView!
   //  var  chosenImage = UIImage()
@@ -30,11 +30,12 @@ class SettingsViewController: UIViewController,
     @IBOutlet weak var userButton: UIImageView!
     @IBOutlet weak var sucessPicture: UILabel!
     
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var pictureProfile: UIImageView!
      var userToken: String = "";
     let picker = UIImagePickerController()
-    var verifEmail: String = "";
+   // var verifEmail: String = "";
     
     @IBAction func library(_ sender: UIBarButtonItem) {
         
@@ -81,6 +82,8 @@ class SettingsViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveButton.layer.cornerRadius = 5
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         picker.delegate = self
@@ -109,7 +112,7 @@ class SettingsViewController: UIViewController,
         let headers = ["Authorization": "Bearer \(userToken)"]
         
 
-        Alamofire.request("http://34.227.142.101:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -129,16 +132,16 @@ class SettingsViewController: UIViewController,
     {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
-        Alamofire.request("http://34.227.142.101:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 self.username.text = response["username"] as! String
-                self.verifEmail = response["email"] as! String
+              //  self.verifEmail = response["email"] as! String
                 self.name.text = response["username"] as! String
                 self.emailAddress.text = response["email"] as! String
-                self.email.text = response["email"] as! String
+              //  self.email.text = response["email"] as! String
                
                 print(response)
                 if(response["profile_picture_url"] != nil){
@@ -186,7 +189,7 @@ class SettingsViewController: UIViewController,
         parameters = [
             "username": self.username.text! as! AnyObject]
         
-        Alamofire.request("http://34.227.142.101:50000/updateUserName", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate()
+        Alamofire.request("http://34.238.153.180:50000/updateUserName", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
@@ -213,7 +216,7 @@ class SettingsViewController: UIViewController,
             "profile_picture_url": urlPicture as AnyObject]
         
         
-        Alamofire.request("http://34.227.142.101:50000/updateUserPicture", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/updateUserPicture", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -234,33 +237,7 @@ class SettingsViewController: UIViewController,
 
     }
     
-    func updateEmail()
-    {
-        let headers = ["Authorization": "Bearer \(userToken)"]
-        
-        let parameters: [String: AnyObject]
-        
-        parameters = [
-            "email": self.email.text! as! AnyObject]
 
-        
-        Alamofire.request("http://34.227.142.101:50000/updateUserEmail", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .responseJSON { response in switch response.result {
-            case .success(let JSON):
-                let response = JSON as! NSDictionary
-                print(response)
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-                if let data = response.data {
-                    let json = String(data: data, encoding: String.Encoding.utf8)
-                    print("Failure Response: \(json)")
-                    self.errorMessage.text = json
-                }
-                }
-        }
-        
-    }
     
     func updatePassword()
     {
@@ -274,7 +251,7 @@ class SettingsViewController: UIViewController,
         parameters = [
         "old_password": self.currentPassword.text! as AnyObject, "new_password": self.newPassword.text! as AnyObject]
         
-        Alamofire.request("http://34.227.142.101:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("hhttp://34.238.153.180:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -393,14 +370,14 @@ class SettingsViewController: UIViewController,
         self.errorMessage.text = ""
 
         updateUserName()
-        if(self.email.text != self.verifEmail){
-            updateEmail()
+    //    if(self.email.text != self.verifEmail){
+      //      updateEmail()
 
-        }
+        //}
         
         self.name.text = self.username.text
         
-        self.emailAddress.text = self.email.text
+      //  self.emailAddress.text = self.email.text
         
         updatePassword()
         getUser()

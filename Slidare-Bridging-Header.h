@@ -5,3 +5,4 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <IRCrypto/IRCryptoHeader.h>
+#import <CommonCrypto/CommonCrypto.h>

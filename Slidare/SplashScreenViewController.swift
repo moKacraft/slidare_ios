@@ -60,7 +60,7 @@ class SplashScreenViewController: UIViewController {
             "email": email  as AnyObject,
             "fb_token": FBSDKAccessToken.current().tokenString  as AnyObject,
             "fb_user_id": FBSDKAccessToken.current().userID]  as AnyObject) as! [String : AnyObject]
-        Alamofire.request("http://34.227.142.101:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("http://34.238.153.180:50000/loginUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

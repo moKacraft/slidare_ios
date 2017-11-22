@@ -17,6 +17,7 @@ class ForgetPasswordViewController: UIViewController{
     
     @IBOutlet weak var email: UITextField!
 
+    @IBOutlet weak var sendButton: UIButton!
     override func viewDidLoad() {
         
          self.showAnimate()
@@ -29,6 +30,8 @@ class ForgetPasswordViewController: UIViewController{
         userToken = appDelegate.userToken
         userId = appDelegate.userId
         view.addGestureRecognizer(tap)
+        sendButton.layer.cornerRadius = 5
+
         
         
     }
@@ -46,7 +49,7 @@ class ForgetPasswordViewController: UIViewController{
             "email": self.email.text! as! AnyObject]
         
         
-        Alamofire.request("http://34.227.142.101:50000/resetPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180/resetPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

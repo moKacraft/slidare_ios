@@ -100,7 +100,7 @@ class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         
         
-        Alamofire.request("http://34.227.142.101:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

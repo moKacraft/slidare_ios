@@ -28,6 +28,8 @@ class SignUpViewController: UIViewController {
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
                 view.addGestureRecognizer(tap)
+        createButton.layer.cornerRadius = 5
+
         
     }
     
@@ -61,7 +63,7 @@ class SignUpViewController: UIViewController {
             "last_name": lastName.text! as! AnyObject,
             "email": email.text! as! AnyObject,
             "password": password.text! as! AnyObject]
-        Alamofire.request("http://34.227.142.101:50000/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("http://34.238.153.180:50000/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):

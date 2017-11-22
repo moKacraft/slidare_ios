@@ -67,7 +67,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         getUser()
 
-        socket = SocketIOClient(socketURL: URL(string: "http:34.227.142.101:8090")!, config: [.log(false)])
+        socket = SocketIOClient(socketURL: URL(string: "http://34.238.153.180:8090")!, config: [.log(false)])
         
         socket?.on("connect") {data, ack in
             print("socket connected")
@@ -75,7 +75,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         }
         socket?.on("testbeta@gmail.com") {data, ack in
             print("here")
-            var client = TCPClient(address: "34.227.142.101", port: data[1] as! Int32)
+            var client = TCPClient(address: "34.238.153.180", port: data[1] as! Int32)
             client.connect(timeout: 10);
             
             let file = data[4] as! String // this is the file. we will write to and read from it
@@ -169,7 +169,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         let headers = ["Authorization": "Bearer \(userToken)"]
         
 
-        Alamofire.request("http://34.227.142.101:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/userContacts", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -226,7 +226,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
-        Alamofire.request("http://34.227.142.101:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/fetchUser", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -276,7 +276,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
-        Alamofire.request("http://34.227.142.101:50000/getUserFiles", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/getUserFiles", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -341,7 +341,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         }
     }
     func initSocketio(userName: String) {
-        socket = SocketIOClient(socketURL: URL(string: "http://34.227.142.101:8090")!, config: [.log(false)])
+        socket = SocketIOClient(socketURL: URL(string: "http://34.238.153.180:8090")!, config: [.log(false)])
         
         socket?.on("connect") {data, ack in
             print("socket connected")
@@ -349,7 +349,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         }
         socket?.on(userName) {data, ack in
             print("here")
-            var client = TCPClient(address: "34.227.142.101", port: data[1] as! Int32)
+            var client = TCPClient(address: "34.238.153.180", port: data[1] as! Int32)
             client.connect(timeout: 10);
             let transferId = data[2] as! String
             let file = data[4] as! String //this is the file. we will write to and read from it
@@ -416,7 +416,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
             
         }
         socket?.on("server ready") {data, ack in
-            var client = TCPClient(address: "34.227.142.101", port: data[0] as! Int32)
+            var client = TCPClient(address: "34.238.153.180", port: data[0] as! Int32)
             client.connect(timeout: 10);
             
             let res = client.send(data: self.encryptedFile)

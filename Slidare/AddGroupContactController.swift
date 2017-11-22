@@ -91,7 +91,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
 
     
         
-        Alamofire.request("http://34.227.142.101:50000/renameGroup", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/renameGroup", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -121,7 +121,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         parameters = [
             "contact_identifier": self.email.text! as AnyObject]
         
-        Alamofire.request("http://34.227.142.101:50000/addToGroup/" + groupChosen, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/addToGroup/" + groupChosen, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -146,7 +146,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         let headers = ["Authorization": "Bearer \(userToken)"]
         
         
-        Alamofire.request("http://34.227.142.101:50000/fetchGroups", method: .get, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/fetchGroups", method: .get, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -188,7 +188,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         
         
         
-        Alamofire.request("http://34.227.142.101:50000/removeGroup/" + groupDeleted, method: .delete, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/removeGroup/" + groupDeleted, method: .delete, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
