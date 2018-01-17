@@ -251,9 +251,9 @@ class SettingsViewController: UIViewController,
         let parameters: [String: AnyObject]
         
         parameters = [
-        "old_password": self.currentPassword.text! as AnyObject, "new_password": self.newPassword.text! as AnyObject]
+        "old_password": self.currentPassword.text! as AnyObject, "new_password": self.confirmPwd.text! as AnyObject]
         
-        Alamofire.request("hhttp://34.238.153.180:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/updateUserPassword", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
@@ -265,7 +265,8 @@ class SettingsViewController: UIViewController,
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
-               self.errorMessage.text = "Wrong password provided"
+                    print(self.currentPassword.text! as AnyObject)
+                    self.errorMessage.text = "Wrong password provided"
         
                     if(self.currentPassword.text == "" && self.newPassword.text == "" && self.confirmPwd.text == ""){
                    self.errorMessage.text = ""}

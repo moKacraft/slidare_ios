@@ -41,19 +41,31 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func accountCreatePressed(_ sender: AnyObject) {
-        if self.email.text != self.confirmEmail.text
+        if((self.firstName.text?.isEmpty)! || (self.lastName.text?.isEmpty)! || (self.email.text?.isEmpty)! || (self.confirmEmail.text?.isEmpty)! || (self.password.text?.isEmpty)! || (self.confirmPassword.text?.isEmpty)! )
         {
-            self.response.text = "Email address does not match"
+            self.response.text = "Please fill all text fields"
         }
-        if self.password.text != self.confirmPassword.text
+        else
         {
-            self.response.text = "Password does not match"
+            if self.email.text != self.confirmEmail.text
+            {
+                self.response.text = "Email address does not match"
+            }
+            if self.password.text != self.confirmPassword.text
+            {
+                self.response.text = "Password does not match"
+            }
+            if (self.password.text != self.confirmPassword.text && self.email.text != self.confirmEmail.text)
+            {
+                self.response.text = "Password and email address do not match"
+            }
+            if(self.email.text == self.confirmEmail.text && self.password.text == self.confirmPassword.text)
+            {
+                self.response.text = ""
+                createUser()
+            }
         }
-        if(self.email.text == self.confirmEmail.text && self.password.text == self.confirmPassword.text)
-        {
-            self.response.text = ""
-            createUser()
-        }
+
     }
     
     func createUser() {
