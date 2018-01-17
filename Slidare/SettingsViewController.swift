@@ -240,9 +240,7 @@ class SettingsViewController: UIViewController,
         }
 
     }
-    
-
-    
+        
     func updatePassword()
     {
 

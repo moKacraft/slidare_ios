@@ -299,6 +299,8 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                     }
                     self.tableView.reloadData()
                 }
+                    self.activityInd.stopAnimating()
+          
                 
                 if let sendersName = response["senders"] as? NSArray {
                     for senderName in sendersName {
