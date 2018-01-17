@@ -27,9 +27,11 @@ class SettingsViewController: UIViewController,
   //  var  chosenImage = UIImage()
     @IBOutlet weak var confirmPwd: UITextField!
 
+    @IBOutlet weak var userMessage: UILabel!
     @IBOutlet weak var userButton: UIImageView!
     @IBOutlet weak var sucessPicture: UILabel!
     
+    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var pictureProfile: UIImageView!
@@ -83,7 +85,7 @@ class SettingsViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.layer.cornerRadius = 5
-
+        logoutButton.layer.cornerRadius = 5
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         picker.delegate = self
@@ -138,11 +140,10 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 self.username.text = response["username"] as! String
-              //  self.verifEmail = response["email"] as! String
+           
                 self.name.text = response["username"] as! String
                 self.emailAddress.text = response["email"] as! String
-              //  self.email.text = response["email"] as! String
-               
+ 
                 print(response)
                 if(response["profile_picture_url"] != nil){
                 let url = URL(string: response["profile_picture_url"] as! String )
@@ -194,8 +195,11 @@ class SettingsViewController: UIViewController,
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
+                self.userMessage.text = "Username updated"
+
             case .failure(let error):
                 print("Request failed with error: \(error)")
+               // self.userMessage.text = "Username failed"
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
@@ -242,7 +246,7 @@ class SettingsViewController: UIViewController,
     func updatePassword()
     {
 
-        if(self.newPassword.text == self.confirmPwd.text)
+       if(self.newPassword.text == self.confirmPwd.text)
         {
         let headers = ["Authorization": "Bearer \(userToken)"]
         
@@ -263,17 +267,11 @@ class SettingsViewController: UIViewController,
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
-                    if(json == "")
-                    {
-                        self.errorMessage.text = "Success"
-
-                    }
-                    else if (self.currentPassword.text == "" && self.newPassword.text == "" && self.confirmPwd.text == ""){
+               self.errorMessage.text = "Wrong password provided"
+        
+                    if(self.currentPassword.text == "" && self.newPassword.text == "" && self.confirmPwd.text == ""){
                    self.errorMessage.text = ""}
-                    else
-                    {
-                        self.errorMessage.text = "Wrong password provided"
-                    }
+ 
                 }
                 }
         }

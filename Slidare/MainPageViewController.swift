@@ -27,12 +27,15 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
 
+    @IBOutlet weak var activityInd: UIActivityIndicatorView!
     let cellReuseIdentifier = "cell"
     var userToken: String = "";
     var userId: String = "";
     var socket: SocketIOClient?
     var encryptedFile: Array<UInt8> = []
     var pictureUrls: [String] = []
+    var senders: [String] = []
+    
     
     @IBAction func sendFileClicked(_ sender: Any) {
         print("sendfile")
@@ -61,6 +64,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         if(FirebaseApp.app() == nil){
             FirebaseApp.configure()
         }
+        activityInd.startAnimating()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         userId = appDelegate.userId
@@ -164,6 +168,13 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         getFiles()
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+               activityInd.stopAnimating()
+            }
+        }
+    }
     
     @IBAction func fetchContacts(_ sender: AnyObject) {
         let headers = ["Authorization": "Bearer \(userToken)"]
@@ -185,6 +196,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         }
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.pictureUrls.count
     }
@@ -196,7 +208,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
-        cell.textLabel?.text = self.pictureUrls[indexPath.row]
+        cell.textLabel?.text = "From : " + self.senders[indexPath.row]
         let url = URL(string: self.pictureUrls[indexPath.row])
         let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         cell.imageView?.image = UIImage(data: data!)
@@ -287,6 +299,14 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                     }
                     self.tableView.reloadData()
                 }
+                
+                if let sendersName = response["senders"] as? NSArray {
+                    for senderName in sendersName {
+                        self.senders.append(senderName as! String)
+                    }
+                    self.tableView.reloadData()
+                }
+                
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {

@@ -54,6 +54,7 @@
 		F4C5EEA21D74885000C8AE0D /* userdefault.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C5EE971D74885000C8AE0D /* userdefault.png */; };
 		F4DF1B221EE805FB0012703B /* ContactGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF1B211EE805FB0012703B /* ContactGroupViewController.swift */; };
 		F4DF1B241EE81DF70012703B /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF1B231EE81DF60012703B /* GroupViewController.swift */; };
+		F4E2116B1FD9BCCD00F8BAAA /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = F4E2116A1FD9BCCB00F8BAAA /* folder.png */; };
 		F4E8450C1F123FA1006DC84F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8450B1F123FA1006DC84F /* ShareViewController.swift */; };
 		F4E8450E1F1243D4006DC84F /* piece-jointe.png in Resources */ = {isa = PBXBuildFile; fileRef = F4E8450D1F1243D4006DC84F /* piece-jointe.png */; };
 		F4E845101F124B23006DC84F /* SendToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8450F1F124B23006DC84F /* SendToGroupViewController.swift */; };
@@ -142,6 +143,7 @@
 		F4C5EE971D74885000C8AE0D /* userdefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = userdefault.png; path = img/userdefault.png; sourceTree = "<group>"; };
 		F4DF1B211EE805FB0012703B /* ContactGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactGroupViewController.swift; sourceTree = "<group>"; };
 		F4DF1B231EE81DF60012703B /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		F4E2116A1FD9BCCB00F8BAAA /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		F4E8450B1F123FA1006DC84F /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		F4E8450D1F1243D4006DC84F /* piece-jointe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "piece-jointe.png"; sourceTree = "<group>"; };
 		F4E8450F1F124B23006DC84F /* SendToGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendToGroupViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		D256A39E1D030C97002D986A /* Slidare */ = {
 			isa = PBXGroup;
 			children = (
+				F4E2116A1FD9BCCB00F8BAAA /* folder.png */,
 				F4260B921FBB9D9900DCC046 /* email_grey_192x192.png */,
 				F4260B931FBB9D9E00DCC046 /* grey-padlock.png */,
 				F41635751E00D33D00E1C48D /* GoogleService-Info.plist */,
@@ -429,6 +432,7 @@
 				F49642651E762EFF00080E8C /* people.png in Resources */,
 				F4260B9F1FBC43CD00DCC046 /* messageblue.png in Resources */,
 				F4C5EE981D74885000C8AE0D /* appicon3.png in Resources */,
+				F4E2116B1FD9BCCD00F8BAAA /* folder.png in Resources */,
 				F4C5EEA21D74885000C8AE0D /* userdefault.png in Resources */,
 				F4C5EEA01D74885000C8AE0D /* logotext.png in Resources */,
 				D28AEAE11D0DE8CE000F25BA /* Main.storyboard in Resources */,

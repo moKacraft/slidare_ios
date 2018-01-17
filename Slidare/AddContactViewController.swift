@@ -16,6 +16,7 @@ class AddContactViewController: UIViewController{
     var userId: String = "";
     
 
+    @IBOutlet weak var buttonAdd: UIButton!
     @IBOutlet weak var successMessage: UILabel!
     @IBOutlet weak var email: UITextField!
     override func viewDidLoad() {
@@ -23,6 +24,8 @@ class AddContactViewController: UIViewController{
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
+       buttonAdd.layer.cornerRadius = 5
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         userId = appDelegate.userId

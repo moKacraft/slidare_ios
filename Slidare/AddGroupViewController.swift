@@ -18,6 +18,7 @@ class AddGroupViewController: UIViewController{
     var userId: String = "";
     
     
+    @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var groupName: UITextField!
     @IBOutlet weak var messageSuccess: UILabel!
 
@@ -26,6 +27,7 @@ class AddGroupViewController: UIViewController{
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
+        createButton.layer.cornerRadius = 5
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         userToken = appDelegate.userToken
         userId = appDelegate.userId
