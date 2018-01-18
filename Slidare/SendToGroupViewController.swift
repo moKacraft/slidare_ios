@@ -17,23 +17,22 @@ UINavigationControllerDelegate{
     var userId: String = "";
     var listGroup: [String] = []
     var valueSelected = "";
+    var usersSelected: [String] = []
+    var groupUsers: [[String]] = []
     let picker = UIImagePickerController()
+    var shareController: ShareViewController!
     
 
 
     @IBOutlet weak var pickerView: UIPickerView!
-    
-    
-    @IBOutlet weak var imagePicked: UIImageView!
-    
+        
  
     @IBAction func openLibrary(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            var imagePicker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
-            picker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
+            picker.allowsEditing = false
+            self.present(picker, animated: true, completion: nil)
         }    }
     
     override func viewDidLoad() {
@@ -49,19 +48,20 @@ UINavigationControllerDelegate{
         pickerView.delegate = self
         pickerView.dataSource = self
         picker.delegate = self
-     
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+   
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imagePicked.image = image
+//            imagePicked.image = image
+            self.dismiss(animated: true, completion: nil)
+            self.shareController.sendFile(image: image, users: usersSelected)
         } else{
+            self.dismiss(animated: true, completion: nil)
             print("Something went wrong")
         }
         
-        self.dismiss(animated: true, completion: nil)
     }
-    
+        
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -87,6 +87,7 @@ UINavigationControllerDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let row = pickerView.selectedRow(inComponent: 0)
         self.valueSelected = self.listGroup[row] as String
+        self.usersSelected = self.groupUsers[row]
     }
     
 
@@ -104,13 +105,18 @@ UINavigationControllerDelegate{
                 let response = JSON as! NSDictionary
                 print(response)
                 let groupNames = response["groups"] as? [[String : AnyObject]]
-                
                 for groupNamess in groupNames! {
                     let name = groupNamess["name"]! as! String
+                    if let users = groupNamess["users"] as? [String] {
+                        print("users")
+                        print(users)
+                        self.groupUsers.append(users)
+                    } else {
+                        self.groupUsers.append([])
+                    }
                     self.listGroup.append(name)
                     self.pickerView.reloadAllComponents()
                     print("groupName: \(name)")
-                    
                 }
                 for element in self.listGroup {
                     print(element)

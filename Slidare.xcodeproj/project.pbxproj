@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		366E288EC9C12E077DB5DD63 /* Pods_SlidareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D248F27375309B10CA4179C4 /* Pods_SlidareUITests.framework */; };
 		7C4BA8196B1AF7289D155C14 /* Pods_SlidareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A006E5BB9A0770FB756D1B79 /* Pods_SlidareTests.framework */; };
+		B618769A200F6A6D000C8C33 /* messagewhite.png in Resources */ = {isa = PBXBuildFile; fileRef = B6187698200F6A6D000C8C33 /* messagewhite.png */; };
+		B618769B200F6A6D000C8C33 /* contact-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B6187699200F6A6D000C8C33 /* contact-white.png */; };
 		CE51180C2B9848F20FC6A12F /* Pods_Slidare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E15F5F4F2BE83053081468 /* Pods_Slidare.framework */; };
 		D24754741D16A52A008EE757 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24754731D16A52A008EE757 /* SplashScreenViewController.swift */; };
 		D256A3A01D030C97002D986A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256A39F1D030C97002D986A /* AppDelegate.swift */; };
@@ -28,10 +30,6 @@
 		F4260B941FBB9DB600DCC046 /* email_grey_192x192.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B921FBB9D9900DCC046 /* email_grey_192x192.png */; };
 		F4260B951FBB9DB600DCC046 /* grey-padlock.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B931FBB9D9E00DCC046 /* grey-padlock.png */; };
 		F4260B971FBB9FC600DCC046 /* dark-blue-wallpapers22.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B961FBB9FBC00DCC046 /* dark-blue-wallpapers22.png */; };
-		F4260B9C1FBC43CD00DCC046 /* messagewhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B981FBC43AE00DCC046 /* messagewhite.png */; };
-		F4260B9D1FBC43CD00DCC046 /* contactblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B991FBC43AF00DCC046 /* contactblue.png */; };
-		F4260B9E1FBC43CD00DCC046 /* contact-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B9A1FBC43BF00DCC046 /* contact-white.png */; };
-		F4260B9F1FBC43CD00DCC046 /* messageblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260B9B1FBC43BF00DCC046 /* messageblue.png */; };
 		F4260BA11FBCCDD700DCC046 /* add-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F4260BA01FBCCDB100DCC046 /* add-icon.png */; };
 		F42F42361EBE980C006F2C7A /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42F42351EBE980C006F2C7A /* AddContactViewController.swift */; };
 		F44309611D763E5C00DFBDAE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44309601D763E5C00DFBDAE /* SettingsViewController.swift */; };
@@ -89,6 +87,8 @@
 		7CA0E7889D2A7495C073A291 /* Pods-SlidareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlidareUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlidareUITests/Pods-SlidareUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A006E5BB9A0770FB756D1B79 /* Pods_SlidareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlidareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E15F5F4F2BE83053081468 /* Pods_Slidare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slidare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6187698200F6A6D000C8C33 /* messagewhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messagewhite.png; sourceTree = "<group>"; };
+		B6187699200F6A6D000C8C33 /* contact-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact-white.png"; sourceTree = "<group>"; };
 		CA1076F224C71F50B67CBB71 /* Pods-SlidareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlidareUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlidareUITests/Pods-SlidareUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D24754731D16A52A008EE757 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		D248F27375309B10CA4179C4 /* Pods_SlidareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlidareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,10 +117,6 @@
 		F4260B921FBB9D9900DCC046 /* email_grey_192x192.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_grey_192x192.png; sourceTree = "<group>"; };
 		F4260B931FBB9D9E00DCC046 /* grey-padlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grey-padlock.png"; sourceTree = "<group>"; };
 		F4260B961FBB9FBC00DCC046 /* dark-blue-wallpapers22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark-blue-wallpapers22.png"; sourceTree = "<group>"; };
-		F4260B981FBC43AE00DCC046 /* messagewhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messagewhite.png; path = ../../../../Downloads/messagewhite.png; sourceTree = "<group>"; };
-		F4260B991FBC43AF00DCC046 /* contactblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = contactblue.png; path = ../../../../Downloads/contactblue.png; sourceTree = "<group>"; };
-		F4260B9A1FBC43BF00DCC046 /* contact-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "contact-white.png"; path = "../../../../Downloads/contact-white.png"; sourceTree = "<group>"; };
-		F4260B9B1FBC43BF00DCC046 /* messageblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messageblue.png; path = ../../../../Downloads/messageblue.png; sourceTree = "<group>"; };
 		F4260BA01FBCCDB100DCC046 /* add-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-icon.png"; sourceTree = "<group>"; };
 		F42F42351EBE980C006F2C7A /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		F44309601D763E5C00DFBDAE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +228,8 @@
 		D256A39E1D030C97002D986A /* Slidare */ = {
 			isa = PBXGroup;
 			children = (
+				B6187699200F6A6D000C8C33 /* contact-white.png */,
+				B6187698200F6A6D000C8C33 /* messagewhite.png */,
 				F4E2116A1FD9BCCB00F8BAAA /* folder.png */,
 				F4260B921FBB9D9900DCC046 /* email_grey_192x192.png */,
 				F4260B931FBB9D9E00DCC046 /* grey-padlock.png */,
@@ -244,10 +242,6 @@
 				D256A3CD1D0355A8002D986A /* Slidare-Bridging-Header.h */,
 				D28AEAE01D0DE8CE000F25BA /* Main.storyboard */,
 				F4260BA01FBCCDB100DCC046 /* add-icon.png */,
-				F4260B9A1FBC43BF00DCC046 /* contact-white.png */,
-				F4260B991FBC43AF00DCC046 /* contactblue.png */,
-				F4260B9B1FBC43BF00DCC046 /* messageblue.png */,
-				F4260B981FBC43AE00DCC046 /* messagewhite.png */,
 				F4260B961FBB9FBC00DCC046 /* dark-blue-wallpapers22.png */,
 				F48517381F7C417A00FCDCC5 /* ConversationViewController.swift */,
 				F48517361F7C08C700FCDCC5 /* ForgetPasswordViewController.swift */,
@@ -384,7 +378,7 @@
 				TargetAttributes = {
 					D256A39B1D030C97002D986A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2LAP3RMZ2H;
+						DevelopmentTeam = 65TCTLNQVW;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -426,21 +420,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4C5EE8C1D74723300C8AE0D /* img in Resources */,
-				F4260B9C1FBC43CD00DCC046 /* messagewhite.png in Resources */,
 				F4260BA11FBCCDD700DCC046 /* add-icon.png in Resources */,
 				F4C5EE9B1D74885000C8AE0D /* arrow.jpeg in Resources */,
 				F49642651E762EFF00080E8C /* people.png in Resources */,
-				F4260B9F1FBC43CD00DCC046 /* messageblue.png in Resources */,
 				F4C5EE981D74885000C8AE0D /* appicon3.png in Resources */,
 				F4E2116B1FD9BCCD00F8BAAA /* folder.png in Resources */,
 				F4C5EEA21D74885000C8AE0D /* userdefault.png in Resources */,
+				B618769A200F6A6D000C8C33 /* messagewhite.png in Resources */,
 				F4C5EEA01D74885000C8AE0D /* logotext.png in Resources */,
+				B618769B200F6A6D000C8C33 /* contact-white.png in Resources */,
 				D28AEAE11D0DE8CE000F25BA /* Main.storyboard in Resources */,
 				F4260B951FBB9DB600DCC046 /* grey-padlock.png in Resources */,
 				F4C5EE9F1D74885000C8AE0D /* logo.png in Resources */,
 				D256A3AA1D030C97002D986A /* LaunchScreen.storyboard in Resources */,
 				D256A3A71D030C97002D986A /* Assets.xcassets in Resources */,
-				F4260B9E1FBC43CD00DCC046 /* contact-white.png in Resources */,
 				F4C5EE9E1D74885000C8AE0D /* loadingpage.png in Resources */,
 				F4C5EE991D74885000C8AE0D /* appicon4.png in Resources */,
 				F4F85C151EEAAF3A004711B0 /* api.png in Resources */,
@@ -452,7 +445,6 @@
 				F4E8450E1F1243D4006DC84F /* piece-jointe.png in Resources */,
 				F49642661E762EFF00080E8C /* home.png in Resources */,
 				F4C5EE9D1D74885000C8AE0D /* icon2.png in Resources */,
-				F4260B9D1FBC43CD00DCC046 /* contactblue.png in Resources */,
 				F4C5EEA11D74885000C8AE0D /* Sans titre-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,7 +797,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2LAP3RMZ2H;
+				DEVELOPMENT_TEAM = 65TCTLNQVW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Slidare/Frameworks",
@@ -813,7 +805,7 @@
 				INFOPLIST_FILE = Slidare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Slidare-Bridging-Header.h";
@@ -830,7 +822,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2LAP3RMZ2H;
+				DEVELOPMENT_TEAM = 65TCTLNQVW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Slidare/Frameworks",
@@ -838,7 +830,7 @@
 				INFOPLIST_FILE = Slidare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slidareteam.slidare3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Slidare-Bridging-Header.h";

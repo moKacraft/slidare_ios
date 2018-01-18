@@ -31,7 +31,9 @@ class ConversationViewController: UIViewController, UIWebViewDelegate{
     func webViewDidFinishLoad(_ webView : UIWebView) {
         activityInd.stopAnimating()
     }
-
     
+    @IBAction func backBtnTapped(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
 }

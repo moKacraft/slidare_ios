@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dlf-83-tjX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dlf-83-tjX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,7 +40,6 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Slidare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -135,6 +134,7 @@
                         <outlet property="signinButton" destination="Azp-KG-4lB" id="NvQ-oA-KHW"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-42.399999999999999" y="331.48425787106447"/>
         </scene>
@@ -165,14 +165,14 @@
                                 <rect key="frame" x="0.0" y="127" width="375" height="540"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="g2v-Mx-0Gp" kind="embed" id="f4S-hw-cUG"/>
+                                    <segue destination="g2v-Mx-0Gp" kind="embed" identifier="groupContainer" id="f4S-hw-cUG"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74d-t3-vAR">
                                 <rect key="frame" x="0.0" y="127" width="375" height="540"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="4ge-Ww-Yfd" kind="embed" id="0Gc-Ju-Y44"/>
+                                    <segue destination="4ge-Ww-Yfd" kind="embed" identifier="contactContainer" id="0Gc-Ju-Y44"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ssU-Rm-pdp">
@@ -187,20 +187,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <segue destination="6L6-kE-wdj" kind="show" id="TXu-XY-IiA"/>
+                                    <action selector="doneBtnPressed:" destination="Ldk-W5-g5O" eventType="touchUpInside" id="iqH-MW-f4a"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="contactContainerView" destination="74d-t3-vAR" id="tmU-L2-qQl"/>
                         <outlet property="contactView" destination="74d-t3-vAR" id="8X4-Bi-oW1"/>
+                        <outlet property="groupContainerView" destination="Rxw-HB-zoE" id="egW-2n-Qml"/>
                         <outlet property="groupView" destination="Rxw-HB-zoE" id="K0M-Zl-6k6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWw-uP-73H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="589.60000000000002" y="-402.54872563718146"/>
+            <point key="canvasLocation" x="724" y="-535"/>
         </scene>
         <!--Conversation View Controller-->
         <scene sceneID="jLI-yz-cLv">
@@ -221,7 +223,7 @@
                                     <navigationItem title="File" id="OzJ-l1-I1N">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="Sox-8I-lR2">
                                             <connections>
-                                                <segue destination="6L6-kE-wdj" kind="show" id="zbo-l9-gDZ"/>
+                                                <action selector="backBtnTapped:" destination="ycw-c9-g3T" id="buC-13-uN4"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -287,7 +289,7 @@
                                     <navigationItem title="History" id="tc8-4P-W9y">
                                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="hnQ-a6-DYN">
                                             <connections>
-                                                <segue destination="Ldk-W5-g5O" kind="show" id="d9g-CG-OQk"/>
+                                                <action selector="onShareClicked:" destination="6L6-kE-wdj" id="5zf-NO-K4x"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -323,6 +325,7 @@
                         <outlet property="tableView" destination="gib-Np-3ap" id="EcU-90-8hd"/>
                         <outlet property="webView" destination="RIx-rQ-NuV" id="AyJ-fC-5jC"/>
                         <segue destination="ycw-c9-g3T" kind="show" identifier="Segue" id="N8a-Rg-yhE"/>
+                        <segue destination="Ldk-W5-g5O" kind="presentation" identifier="shareSegue" id="MOz-HR-IMF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Lr-L5-u77" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1236,8 +1239,8 @@
         <image name="userdefault.png" width="183" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nfr-gt-74A"/>
-        <segue reference="8mN-E4-dpI"/>
-        <segue reference="zQj-l3-wyv"/>
+        <segue reference="yyv-MG-MqE"/>
+        <segue reference="BgZ-Qc-MJq"/>
+        <segue reference="aYf-ta-Lbr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,19 +17,18 @@ class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPic
         var contactList = [String]()
         var valueSelected = "";
      let picker = UIImagePickerController()
+    var shareController: ShareViewController!
+
     
-    
-    @IBOutlet weak var imagePicked: UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
     
     
     @IBAction func openLibrary(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            var imagePicker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
-            picker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
+            picker.allowsEditing = false
+            self.present(picker, animated: true, completion: nil)
         }
     }
     
@@ -51,14 +50,17 @@ class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imagePicked.image = image
+//            imagePicked.image = image
+            self.dismiss(animated: true, completion: nil)
+            self.shareController.sendFile(image: image, users: [valueSelected])
         } else{
+            self.dismiss(animated: true, completion: nil)
             print("Something went wrong")
         }
         
-        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -129,7 +131,7 @@ class SendToContactViewController: UIViewController, UIPickerViewDelegate, UIPic
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
                 }
-                }
+            }
         }
         
     }
