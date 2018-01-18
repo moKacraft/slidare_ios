@@ -96,8 +96,6 @@ class SettingsViewController: UIViewController,
 //        uploadPicture()
        
     }
-
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

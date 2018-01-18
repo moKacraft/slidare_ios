@@ -20,7 +20,6 @@ import ImagePicker
 
 class MainPageViewController: UIViewController, ImagePickerDelegate, UITableViewDelegate, UITableViewDataSource  {
     @IBOutlet weak var facebookLogout: UIButton!
-    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var tableView: UITableView!
@@ -31,11 +30,11 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     let cellReuseIdentifier = "cell"
     var userToken: String = "";
     var userId: String = "";
-    var socket: SocketIOClient?
+    var socket: SocketIOClient? = nil
     var encryptedFile: Array<UInt8> = []
     var pictureUrls: [String] = []
     var senders: [String] = []
-    
+    var userName: String = "";
     
     @IBAction func sendFileClicked(_ sender: Any) {
         print("sendfile")
@@ -55,7 +54,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         print(images.count)
-        sendFile(image: images[0])
+//        sendFile(image: images[0])
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
@@ -70,101 +69,9 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         userId = appDelegate.userId
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         getUser()
-
-        socket = SocketIOClient(socketURL: URL(string: "http://34.238.153.180:8090")!, config: [.log(false)])
-        
-        socket?.on("connect") {data, ack in
-            print("socket connected")
-            print("Type \"quit\" to stop")
-        }
-        socket?.on("testbeta@gmail.com") {data, ack in
-            print("here")
-            var client = TCPClient(address: "34.238.153.180", port: data[1] as! Int32)
-            client.connect(timeout: 10);
-            
-            let file = data[4] as! String // this is the file. we will write to and read from it
-            
-            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                
-                let path = dir.appendingPathComponent(file as! String)
-                var count = 0;
-                var buffer: Data = Data();
-                while (true) {
-                    guard let data2 = client.read(1024*4) else {
-                        print("here2")
-                        break; }
-                    let pointer = UnsafeBufferPointer(start:data2, count:data2.count)
-                    let buf = Data(buffer:pointer)
-                    buffer.append(buf)
-                    do {
-                        try buf.write(to: path)
-                    }
-                    catch { //error handling here
-                    }
-                }
-                print(buffer.count)
-                
-                let storage = Storage.storage()
-                
-//                 Create a storage reference from our storage service
-                let storageRef = storage.reference(forURL: "gs:slidare-c93d1.appspot.com/" + (data[4] as! String))
-                _ = storageRef.putData(buffer, metadata: nil) { metadata, error in
-                    if error != nil {
-                        print(error)
-                    } else {
-                        let url = metadata!.downloadURL()
-                        print(url?.absoluteString)
-                        let url2 = NSURL (string: (url?.absoluteString)!);
-                        let requestObj = NSURLRequest(url: url2! as URL);
-                        self.webView.scalesPageToFit = true;
-                        self.webView.loadRequest(requestObj as URLRequest);
-                    }
-                }
-                
-                do {
-                    let dataDec = Data(base64Encoded: data[6] as! String)
-                    let dataDec2 = Data(base64Encoded: data[7] as! String)
-                    let rep2 = try PKCS5.PBKDF2(password: Array<UInt8>((data[8] as! String).utf8), salt: (dataDec?.bytes)!, iterations: 65536, variant: .sha256).calculate()
-                    print(rep2)
-
-                    let decrypted = try AES(key: rep2, iv: dataDec2?.bytes, blockMode: .CBC, padding: .pkcs7).decrypt(buffer.bytes)
-
-                    print(decrypted)
-                    let storage = Storage.storage()
-
-                    // Create a storage reference from our storage service
-                    let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/" + (data[4] as! String))
-                    _ = storageRef.putData(Data(decrypted), metadata: nil) { metadata, error in
-                        if error != nil {
-                            print(error)
-                        } else {
-                            let url = metadata!.downloadURL()
-                            print(url?.absoluteString)
-                            let url2 = NSURL (string: (url?.absoluteString)!);
-                            let requestObj = NSURLRequest(url: url2! as URL);
-                            self.webView.scalesPageToFit = true;
-                            self.webView.loadRequest(requestObj as URLRequest);
-                        }
-                    }
-
-                } catch {
-                    print(error)
-                }
-//                do {
-//                    let decrypted = try AES(key: data[8] as! Array<UInt8>, iv: data[7] as! Array<UInt8>, blockMode: .CBC, padding: .pkcs7).decrypt(fileBuf)
-//                } catch {
-//                    print(error)
-//                }
-            }
-        }
-        socket?.on("server ready") {data, ack in
-            print(data);
-        }
-        
-        socket?.connect();
         tableView.delegate = self
         tableView.dataSource = self
-        getUser()
+//        getUser()
         getFiles()
     }
 
@@ -203,15 +110,13 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // create a new cell if needed or reuse an old one
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
-        
-        // set the text from the data model
-        cell.textLabel?.text = "From : " + self.senders[indexPath.row]
-        let url = URL(string: self.pictureUrls[indexPath.row])
+        cell.textLabel?.text = "From : " + self.senders[self.senders.count - 1 - indexPath.row]
+        let url = URL(string: self.pictureUrls[self.pictureUrls.count - 1 - indexPath.row])
         let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        cell.imageView?.image = UIImage(data: data!)
+        if (data != nil) {
+            cell.imageView?.image = UIImage(data: data!)
+        }
 //        cell.imageView?.image = UIImage(url)
 //        cell.imageView
         
@@ -220,9 +125,9 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(self.pictureUrls[indexPath.row])
+        print(self.pictureUrls[self.pictureUrls.count - 1 - indexPath.row])
         print("You tapped cell number \(indexPath.row).")
-        self.performSegue(withIdentifier: "Segue", sender: self.pictureUrls[indexPath.row])
+        self.performSegue(withIdentifier: "Segue", sender: self.pictureUrls[self.pictureUrls.count - 1 - indexPath.row])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -231,6 +136,9 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
             let url = sender as! String
             let secondViewController = segue.destination as! ConversationViewController
             secondViewController.imageUrl = url;
+        } else if segue.identifier == "shareSegue" {
+            let shareViewController = segue.destination as! ShareViewController
+            shareViewController.mainViewController = self
         }
     }
     
@@ -251,8 +159,6 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                 self.settingButton.setImage(image, for: .normal)
                 } else {
 
-                print(url)
-                
                 let data = try? Data(contentsOf: url as! URL)
                 if let imageData = data {
                     print(imageData)
@@ -268,8 +174,8 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
                     }}
                 
 
-
-                self.initSocketio(userName: (response["username"] as? String)!)
+                self.userName = (response["email"] as? String)!
+                self.initSocketio(userName: self.userName)
 //                if (response["profile_picture_url"] as? String) != nil {
 //                    self.getProfilePicture(response["profile_picture_url"] as! String)
 //                }
@@ -343,7 +249,7 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         let internVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         self.show(internVC, sender: internVC)
     }
-    func sendFile(image: UIImage) {
+    func sendFile(image: UIImage, users: [String]) {
         let salt: Array<UInt8> = Array("slidarep".utf8)
         let iv: Array<UInt8> = AES.randomIV(AES.blockSize)
         let keys6 = PBKDF.deriveKey(password: "12341234123412341234123412341234", salt: salt, prf: .sha1, rounds: 65536, derivedKeyLength: 32)
@@ -353,102 +259,159 @@ class MainPageViewController: UIViewController, ImagePickerDelegate, UITableView
         let keysString = "12341234123412341234123412341234"
         do {
             encryptedFile = try AES(key: keys6, iv: iv, blockMode: .CBC, padding: .pkcs7).encrypt(data!.bytes)
-            socket?.emit("request file transfer", "iosFile.jpg",
-                             "iosFile.jpg", ["juju@gmail.com"], "encrypted", "iosFile",
+            let uuid = UUID().uuidString + ".jpg"
+            socket?.emit("request file transfer", uuid,
+                             uuid, users, "encrypted", "iosFile",
                              "nosha1", saltString!,
-                             ivString!, keysString, encryptedFile.count);
+                             ivString!, keysString, encryptedFile.count, self.userName);
             print(encryptedFile.count)
         } catch {
             print(error)
         }
     }
     func initSocketio(userName: String) {
-        socket = SocketIOClient(socketURL: URL(string: "http://34.238.153.180:8090")!, config: [.log(false)])
-        
-        socket?.on("connect") {data, ack in
-            print("socket connected")
-            print("Type \"quit\" to stop")
-        }
-        socket?.on(userName) {data, ack in
-            print("here")
-            var client = TCPClient(address: "34.238.153.180", port: data[1] as! Int32)
-            client.connect(timeout: 10);
-            let transferId = data[2] as! String
-            let file = data[4] as! String //this is the file. we will write to and read from it
+        if (socket == nil) {
+            socket = SocketIOClient(socketURL: URL(string: "http://34.238.153.180:8090")!, config: [.log(false)])
             
-            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                
-                let path = dir.appendingPathComponent(file as! String)
-                var count = 0;
-                var buffer: Data = Data();
-                while (true) {
-                    guard let data2 = client.read(1024*4) else {
-                        break; }
-                    let pointer = UnsafeBufferPointer(start:data2, count:data2.count)
-                    let buf = Data(buffer:pointer)
-                    buffer.append(buf)
-                    do {
-                        try buf.write(to: path)
+            socket?.on("connect") {data, ack in
+                print("socket connected")
+                print("Type \"quit\" to stop")
+            }
+            socket?.on(userName) {data, ack in
+                DispatchQueue.global(qos: .background).async {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "New File", message: "\(data[10]) sent you a file", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+//
+//                        let notification = UILocalNotification()
+//                        notification.fireDate = NSDate(timeIntervalSinceNow: 0) as Date
+//                        notification.alertBody = "\(data[10]) sent you a file"
+//                        notification.soundName = UILocalNotificationDefaultSoundName
+//                        UIApplication.shared.scheduleLocalNotification(notification)
                     }
-                    catch {/* error handling here */}
-                }
-                self.socket?.emit("transfer finished", transferId);
-                var saltString: String = data[6] as! String
-                var ivString: String = data[7] as! String
-                if (saltString.characters.last == "\n") {
-                    saltString.characters.removeLast();
-                }
-                if (ivString.characters.last == "\n") {
-                    ivString.characters.removeLast();
-                }
-                print(data[7] as! String)
-                let iv: Data = Data(base64Encoded: ivString)!
-                let salt: Data = Data(base64Encoded: saltString)!
-                let key: Data = Data(base64Encoded: data[8] as! String)!
-                do {
-                    let keys6 = PBKDF.deriveKey(password: key.base64EncodedString(), salt: salt.bytes, prf: .sha1, rounds: 65536, derivedKeyLength: 32)
-                    let decrypted = try AES(key: keys6, iv: iv.bytes, blockMode: .CBC, padding: .pkcs7).decrypt(buffer.bytes)
-                    let storage = Storage.storage()
+                    var client = TCPClient(address: "34.238.153.180", port: data[1] as! Int32)
+                    let res = client.connect(timeout: 10);
+                    let transferId = data[2] as! String
+                    let file = data[4] as! String //this is the file. we will write to and read from it
                     
-                    // Create a storage reference from our storage service
-                    let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/" + (data[4] as! String))
-                    _ = storageRef.putData(Data(decrypted), metadata: nil) { metadata, error in
-                        if error != nil {
+                    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                        
+                        let path = dir.appendingPathComponent(file as! String)
+                        var count = 0;
+                        var buffer: Data = Data();
+                        while (true) {
+                            guard let data2 = client.read(1024*4, timeout: 100) else {
+                                break; }
+                            let pointer = UnsafeBufferPointer(start:data2, count:data2.count)
+                            let buf = Data(buffer:pointer)
+                            buffer.append(buf)
+                            do {
+                                try buf.write(to: path)
+                            }
+                            catch {/* error handling here */}
+                        }
+                        self.socket?.emit("transfer finished", transferId);
+                        var saltString: String = data[6] as! String
+                        var ivString: String = data[7] as! String
+                        if (saltString.characters.last == "\n") {
+                            saltString.characters.removeLast();
+                        }
+                        if (ivString.characters.last == "\n") {
+                            ivString.characters.removeLast();
+                        }
+                        print(data[7] as! String)
+                        let iv: Data = Data(base64Encoded: ivString)!
+                        let salt: Data = Data(base64Encoded: saltString)!
+                        let key: Data = Data(base64Encoded: data[8] as! String)!
+                        do {
+                            let keys6 = PBKDF.deriveKey(password: key.base64EncodedString(), salt: salt.bytes, prf: .sha1, rounds: 65536, derivedKeyLength: 32)
+                            let decrypted = try AES(key: keys6, iv: iv.bytes, blockMode: .CBC, padding: .pkcs7).decrypt(buffer.bytes)
+                            let storage = Storage.storage()
+                            
+                            // Create a storage reference from our storage service
+                            let storageRef = storage.reference(forURL: "gs://slidare-c93d1.appspot.com/" + (data[4] as! String))
+                            _ = storageRef.putData(Data(decrypted), metadata: nil) { metadata, error in
+                                if error != nil {
+                                    print(error)
+                                    DispatchQueue.main.async {
+                                        let alert = UIAlertController(title: "Download", message: "An error occured while downloading", preferredStyle: UIAlertControllerStyle.alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
+                                } else {
+                                    let url = metadata!.downloadURL()
+                                    print(url?.absoluteString)
+                                    DispatchQueue.main.async {
+                                        let alert = UIAlertController(title: "Download", message: "File Downloaded successfully!", preferredStyle: UIAlertControllerStyle.alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
+                                    
+                                    let parameters = [
+                                        "file_url": url?.absoluteString as AnyObject,
+                                        "sender": data[10] as! AnyObject]
+                                    
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    let userToken = appDelegate.userToken
+                                    let headers = ["Authorization": "Bearer \(userToken)"]
+                                    
+                                    Alamofire.request("http://34.238.153.180:50000/addFileToList", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+                                        .validate()
+                                        .responseJSON { response in switch response.result {
+                                        case .success(let JSON):
+                                            let response = JSON as! NSDictionary
+                                            print(response)
+                                            self.pictureUrls.append((url?.absoluteString)!)
+                                            self.senders.append(data[10] as! String)
+                                            self.tableView.reloadData()
+                                            
+                                        case .failure(let error):
+                                            print("Request failed with error: \(error)")
+                                            }
+                                    }
+                                }
+                            }
+                            
+                        } catch {
                             print(error)
-                        } else {
-                            let url = metadata!.downloadURL()
-                            print(url?.absoluteString)
-                            let url2 = NSURL (string: (url?.absoluteString)!);
-                            let requestObj = NSURLRequest(url: url2! as URL);
-//                            self.webView.scalesPageToFit = true;
-//                            self.webView.loadRequest(requestObj as URLRequest);
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: "Download", message: "An error occured while decrypting the file", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            }
                         }
                     }
-                    
-                } catch {
-                    print(error)
+
                 }
-                //                                do {
-                //                    let decrypted = try AES(key: data[8] as! Array<UInt8>, iv: data[7] as! Array<UInt8>, blockMode: .CBC, padding: PKCS7()).decrypt(fileBuf)
-                //                } catch {
-                //                    print(error)
-                //                }
+            }
+            socket?.on("server ready") {data, ack in
+                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+                    self.tcpClient = TCPClient(address: "34.238.153.180", port: data[0] as! Int32)
+                    self.tcpClient.connect(timeout: 10);
+                    print(self.encryptedFile.count)
+                    let chunks = self.encryptedFile.chunks(size: 1024)
+                    for chunk in chunks {
+                        var res = self.tcpClient.send(data: chunk)
+                        while res.isFailure {
+                            res = self.tcpClient.send(data: chunk)
+                        }
+                        //                    usleep(1000)
+                        //                    print(res)
+                    }
+                    self.tcpClient.close()
+                }
                 
             }
             
+            socket?.connect();
         }
-        socket?.on("server ready") {data, ack in
-            var client = TCPClient(address: "34.238.153.180", port: data[0] as! Int32)
-            client.connect(timeout: 10);
-            
-            let res = client.send(data: self.encryptedFile)
-            client.close()
-            print(res)
-        }
-        
-        socket?.connect();
-   
     }
+    var tcpClient: TCPClient!
+    @IBAction func onShareClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "shareSegue", sender: self)
+    }
+    
 }
 
 extension String {
