@@ -94,7 +94,7 @@ class SignUpViewController: UIViewController {
                 print("Request failed with error: \(error)")
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
-                    self.failureMessage.text = json
+                   // self.failureMessage.text = json
                     print("Failure Response: \(json)")
                     self.response.text = json
                 }
