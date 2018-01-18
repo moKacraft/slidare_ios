@@ -61,10 +61,11 @@ class AddContactViewController: UIViewController{
             // self.contactId = response["id"] as! String
             case .failure(let error):
                 print("Request failed with error: \(error)")
-                self.successMessage.text = "Your request failed"
+                
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.successMessage.text = json
                 }
                 }
         }

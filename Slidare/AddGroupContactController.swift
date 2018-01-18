@@ -15,26 +15,23 @@ import Alamofire
 class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var modifyButton: UIButton!
     @IBOutlet weak var pickerView: UIPickerView!
     var userToken: String = "";
     var userId: String = "";
-   // let groupList = ["Family","Friends","Party"]
+    var myId: String = "";
     var listGroup: [String] = []
+    var listId: [String] = []
     var valueSelected = "";
     @IBOutlet weak var email: UITextField!
     var userName = "";
     @IBOutlet weak var messageSucess: UILabel!
     @IBOutlet weak var nameChange: UITextField!
-  //  @IBOutlet weak var successMessage: UILabel!
-   // @IBOutlet weak var email: UITextField!
     override func viewDidLoad() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
        modifyButton.layer.cornerRadius = 5
        addButton.layer.cornerRadius = 5
-        quitButton.layer.cornerRadius = 5
         deleteButton.layer.cornerRadius = 5
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
@@ -80,6 +77,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBAction func addContact(_ sender: Any) {
         addContactToGroup(groupChosen: self.valueSelected)
 
+        
     }
     
     @IBAction func changeName(_ sender: Any) {
@@ -105,6 +103,8 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
                 let response = JSON as! NSDictionary
                 print(response)
                 self.messageSucess.text = "Group renamed successfully"
+                self.listGroup.removeAll()
+                self.fetchGroup()
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 self.messageSucess.text = "Your request failed"
@@ -125,24 +125,26 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         
         let parameters: [String: AnyObject]
         
+        let escapedAddress = groupChosen.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+
         parameters = [
             "contact_identifier": self.email.text! as AnyObject]
         
-        Alamofire.request("http://34.238.153.180:50000/addToGroup/" + groupChosen, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        Alamofire.request("http://34.238.153.180:50000/addToGroup/" + escapedAddress!, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseJSON { response in switch response.result {
             case .success(let JSON):
                 let response = JSON as! NSDictionary
                 print(response)
-                print("toto")
                 print(groupChosen)
                 self.messageSucess.text = "Contact successfully added"
             case .failure(let error):
                 print("Request failed with error: \(error)")
-                self.messageSucess.text = "Your request failed"
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Failure Response: \(json)")
+                    self.messageSucess.text = json
+
                 }
                 }
         }
@@ -165,15 +167,21 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
 
                 for groupNamess in groupNames! {
                     let name = groupNamess["name"]! as! String
-                    self.listGroup.append(name)
-                    self.pickerView.reloadAllComponents()
-                    print("groupName: \(name)")
+                    let id = groupNamess["owner"]! as! String
+                    if( id == self.myId){
+                        self.listGroup.append(name)
+                        self.listId.append(id)
+                        self.pickerView.reloadAllComponents()
+                        print("groupName: \(name)")
+                        print("groupId: \(id)")
+                    }
                     
                 }
                 if (self.listGroup.count > 0) {
                     self.valueSelected = self.listGroup[0];
                 }
-                
+                self.pickerView.reloadAllComponents()
+
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
@@ -196,6 +204,7 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
                 let response = JSON as! NSDictionary
                 print(response)
                 self.userName = response["email"] as! String
+                self.myId = response["id"] as! String
             case .failure(let error):
                 print("Request failed with error: \(error)")
                 if let data = response.data {
@@ -211,39 +220,6 @@ class AddGroupContactViewController: UIViewController, UIPickerViewDelegate, UIP
         deleteGroup(groupDeleted:self.valueSelected)
     }
     
-    
-    @IBAction func quitGroup(_ sender: Any) {
-        deleteContactToGroup(groupChosen:self.valueSelected, emailDeleted:self.userName)
-        
-    }
-    
-    func deleteContactToGroup(groupChosen:String, emailDeleted:String)
-    {
-        let headers = ["Authorization": "Bearer \(userToken)"]
-        
-        let parameters: [String: AnyObject]
-        
-        parameters = [
-            "contact_identifier": emailDeleted as AnyObject]
-        
-        Alamofire.request("http://34.238.153.180:50000/removeFromGroup/" + groupChosen, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .responseJSON { response in switch response.result {
-            case .success(let JSON):
-                let response = JSON as! NSDictionary
-                print(response)
-                self.messageSucess.text = "Your request success"
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-                if let data = response.data {
-                    let json = String(data: data, encoding: String.Encoding.utf8)
-                    print("Failure Response: \(json)")
-                    self.messageSucess.text = "Your request failed"
-                }
-                }
-        }
-        
-    }
     
     func deleteGroup(groupDeleted:String)
     {
